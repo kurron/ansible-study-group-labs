@@ -28,6 +28,8 @@ IMPORTANT: Each lab builds on the prior ones, so if you are absent from a meetin
 
 IMPORTANT: we will be using the same EC2 instances for the labs so always have your SSH key available when we meet.
 
+TIP: Learners running Windows have had good success with http://gitforwindows.org/[Git BASH].
+
 == Lab 01: Setting Up The Testing Environment
 
 In order to give Ansible inventory to work on, we need to setup several small EC2 instances.  In your Amazon account, create the following:
