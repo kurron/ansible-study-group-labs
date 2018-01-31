@@ -24,10 +24,28 @@ This project is a collection of hands on labs showcasing the use of Ansible.
 
 IMPORTANT: we will be using the same EC2 instances for the labs so always have your SSH key available when we meet.
 
-== Lab 01: Foo
-Blah, blah, blah.
+== Lab 01: Setting Up The Testing Environment
+In order to give Ansible inventory to work on, we need to setup several small EC2 instances.  In your Amazon account, create the following:
 
-TIP: Blah, blah, blah.
+* [ ] a new SSH key pair
+* [ ] an Ubuntu `t2.nano` instance named Ansible Control
+* [ ] an Ubuntu `t2.nano` instance named Alpha
+* [ ] an Ubuntu `t2.nano` instance named Bravo
+* [ ] an Amazon Linux `t2.nano` instance named Charlie
+* [ ] an Amazon Linux `t2.nano` instance named Delta
+
+TIP: Store your SSH keys on a USB stick so you can use different computers to connect to your control instance.
+
+Ansible uses SSH so we need to verify SSH is working as required.
+
+* [ ] copy the private half of your SSH key to the control box
+* [ ] from the control box, ensure you can SSH into Alpha
+* [ ] from the control box, ensure you can SSH into Bravo
+* [ ] from the control box, ensure you can SSH into Charlie
+* [ ] from the control box, ensure you can SSH into Delta
+
+TIP: The `scp` command can be used to upload the key file.
+IMPORTANT: SSH is very picky about file permissions so remember to set the proper permissions on the key prior to use.
 
 == License and Credits
 This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].
