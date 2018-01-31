@@ -41,6 +41,8 @@ In order to give Ansible inventory to work on, we need to setup several small EC
 * [ ] an Amazon Linux `t2.nano` instance named Charlie
 * [ ] an Amazon Linux `t2.nano` instance named Delta
 
+IMPORTANT: ensure that the security group on the instances allows inbound SSH access (port 22).
+
 TIP: Store your SSH keys on a USB stick so you can use different computers to connect to your control instance.
 
 CAUTION: Remember to not use your root account when setting things up.  An Administrator IAM account is highly recommended.
