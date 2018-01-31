@@ -53,6 +53,11 @@ TIP: The `scp` command can be used to upload the key file.
 
 IMPORTANT: SSH is very picky about file permissions so remember to set the proper permissions on the key prior to use.
 
+== Lab 02: Installing Ansible
+
+== Lab 03: Configuring Ansible
+
+== Lab 04: Understanding Inventory
 
 == License and Credits
 This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].
