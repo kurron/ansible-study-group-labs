@@ -45,6 +45,7 @@ Ansible uses SSH so we need to verify SSH is working as required.
 * [ ] from the control box, ensure you can SSH into Delta
 
 TIP: The `scp` command can be used to upload the key file.
+
 IMPORTANT: SSH is very picky about file permissions so remember to set the proper permissions on the key prior to use.
 
 == License and Credits
