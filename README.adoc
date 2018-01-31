@@ -14,7 +14,11 @@ Ron Kurr <rkurr@jvmguy.com>
 toc::[]
 
 == Overview
-This project is a collection of hands on labs showcasing the use of Ansible.
+This project is a collection of hands on labs showcasing the use of Ansible.  Unlike other study groups, the learners will have to solve problems with minimal guidance.
+
+TIP: Each lab exercises what was showcased in the video assignments so many of your questions are probably already answered in the video.
+
+IMPORTANT: Each lab builds on the prior ones, so if you are absent from a meeting you need to finish the lab before you can begin any new ones.
 
 == Prerequisites
 
