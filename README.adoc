@@ -82,6 +82,11 @@ TIP: Read the documentation to see exactly where configuration files are read fr
 . apply the `ping` module again, using the `hosts` file this time
 . apply the `ping` module, but only to the `ubuntu` group
 . apply the `ping` module, but only to the `amazon` group
+. create a `blue` group with `alpha` and `charlie` as members and a `green` group with `bravo` and `delta` as members
+. apply the `ping` module, but only to the `blue` group
+. apply the `ping` module, but only to the `green` group
+. apply the `ping` module to the `all` group
+
 
 TIP: Remember, Ubuntu boxes use `ubuntu` as the user name and Amazon Linux uses `ec2-user`
 
