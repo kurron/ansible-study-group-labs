@@ -60,6 +60,9 @@ TIP: The `scp` command can be used to upload the key file.
 
 IMPORTANT: SSH is very picky about file permissions so remember to set the proper permissions on the key prior to use.
 
+.Block AWS Console
+image::aws-console.png[AWS Console]
+
 == Lab 02: Installing Ansible
 . Install the Ansible PPA on the Ansible control box.
 . Have Ansible print its version to verify the installation
