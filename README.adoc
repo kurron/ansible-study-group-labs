@@ -67,7 +67,7 @@ IMPORTANT: SSH is very picky about file permissions so remember to set the prope
 TIP: The video has the steps as does the Ansible documentation. The documentation is easier to follow.
 
 == Lab 03: Configuring Ansible
-. use the `ansible` command to apply the `ping` module to the `alpha` box.  Do *not* use a `hosts` or `ansible.cfg` file or modify `/etc/ansible/ansible.cfg`, specify the information using a command-line switch.
+. use the `ansible` command to apply the `ping` module to the `alpha` box.  Do *not* use a `hosts` or `ansible.cfg` file, specify the information using command-line switches instead.
 . create an `ansible.cfg` file, specifying the location of your private SSH key
 . apply the `ping` module again, using the `ansible.cfg` file this time
 
