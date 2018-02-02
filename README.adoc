@@ -31,15 +31,14 @@ IMPORTANT: we will be using the same EC2 instances for the labs so always have y
 TIP: Learners running Windows have had good success with http://gitforwindows.org/[Git BASH].
 
 == Lab 01: Setting Up The Testing Environment
-
 In order to give Ansible inventory to work on, we need to setup several small EC2 instances.  In your Amazon account, create the following:
 
-* [ ] a new SSH key pair
-* [ ] an Ubuntu `t2.nano` instance named Ansible Control
-* [ ] an Ubuntu `t2.nano` instance named Alpha
-* [ ] an Ubuntu `t2.nano` instance named Bravo
-* [ ] an Amazon Linux `t2.nano` instance named Charlie
-* [ ] an Amazon Linux `t2.nano` instance named Delta
+.a new SSH key pair
+.an Ubuntu `t2.nano` instance named Ansible Control
+.an Ubuntu `t2.nano` instance named Alpha
+.an Ubuntu `t2.nano` instance named Bravo
+.an Amazon Linux `t2.nano` instance named Charlie
+.an Amazon Linux `t2.nano` instance named Delta
 
 IMPORTANT: Ensure that the security group on the instances allows inbound SSH access (port 22).
 
@@ -50,22 +49,48 @@ CAUTION: Remember to not use your root account when setting things up.  An Admin
 
 Ansible uses SSH so we need to verify SSH is working as required.
 
-* [ ] copy the private half of your SSH key to the control box
-* [ ] from the control box, ensure you can SSH into Alpha
-* [ ] from the control box, ensure you can SSH into Bravo
-* [ ] from the control box, ensure you can SSH into Charlie
-* [ ] from the control box, ensure you can SSH into Delta
-* [ ] stop all of your instances
+.copy the private half of your SSH key to the control box
+.from the control box, ensure you can SSH into Alpha
+.from the control box, ensure you can SSH into Bravo
+.from the control box, ensure you can SSH into Charlie
+.from the control box, ensure you can SSH into Delta
+.stop all of your instances
 
 TIP: The `scp` command can be used to upload the key file.
 
 IMPORTANT: SSH is very picky about file permissions so remember to set the proper permissions on the key prior to use.
 
 == Lab 02: Installing Ansible
+.Install the Ansible PPA on the Ansible control box.
+.Have Ansible print its version to verify the installation
 
 == Lab 03: Configuring Ansible
+.use the `ansible` command to apply the `ping` module to the `alpha` box.  Do *not* use a `hosts` or `ansible.cfg` file or modify `/etc/ansible/ansible.cfg`, specify the information using a command-line switch.
+.create an `ansible.cfg` file, specifying the location of your private SSH key
+.apply the `ping` module again, using the `ansible.cfg` file this time
+
+TIP: When specifying inventory on the command line, makes sure to have a trailing comma `,`
+
+TIP: Format of the configuration file http://docs.ansible.com/ansible/latest/intro_configuration.html[can be found here].
+
+TIP: Read the documentation to see exactly where configuration files are read from
 
 == Lab 04: Understanding Inventory
+.create a `hosts` file with two two groups.  One named `ubuntu` and one names `amazon`,  Put `alpha` and `bravo` in the `ubuntu` group and `charlie` and `delta` in the `amazon` group
+.apply the `ping` module again, using the `hosts` file this time
+.apply the `ping` module, but only to the `ubuntu` group
+.apply the `ping` module, but only to the `amazon` group
+
+TIP: Remember, Ubuntu boxes use `ubuntu` as the user name and Amazon Linux uses `ec2-user`
+
+.Example Output
+[source,json]
+----
+atlantis | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+----
 
 == License and Credits
 This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].
