@@ -67,7 +67,7 @@ IMPORTANT: SSH is very picky about file permissions so remember to set the prope
 TIP: The video has the steps as does the Ansible documentation. The documentation is easier to follow.
 
 == Lab 03: Configuring Ansible
-. use the `ansible` command to apply the `ping` module to the `alpha` box.  Do *not* use a `hosts` or `ansible.cfg` file, specify the information using command-line switches instead.
+. use the `ansible` command to apply the `ping` module to the `alpha` box.  Do *not* use a `hosts` or `ansible.cfg` file, specifying the information using command-line switches instead.
 . create an `ansible.cfg` file, specifying the location of your private SSH key
 . apply the `ping` module again, using the `ansible.cfg` file this time
 
@@ -78,7 +78,7 @@ TIP: Format of the configuration file http://docs.ansible.com/ansible/latest/int
 TIP: Read the documentation to see exactly where configuration files are read from
 
 == Lab 04: Understanding Inventory
-. create a `hosts` file with two two groups.  One named `ubuntu` and one names `amazon`,  Put `alpha` and `bravo` in the `ubuntu` group and `charlie` and `delta` in the `amazon` group
+. create a `hosts` file with two two groups.  One named `ubuntu` and one named `amazon`,  Put `alpha` and `bravo` in the `ubuntu` group and `charlie` and `delta` in the `amazon` group
 . apply the `ping` module again, using the `hosts` file this time
 . apply the `ping` module, but only to the `ubuntu` group
 . apply the `ping` module, but only to the `amazon` group
@@ -88,7 +88,7 @@ TIP: Remember, Ubuntu boxes use `ubuntu` as the user name and Amazon Linux uses 
 .Example Output
 [source,json]
 ----
-atlantis | SUCCESS => {
+alpha | SUCCESS => {
     "changed": false,
     "ping": "pong"
 }
