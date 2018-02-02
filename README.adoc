@@ -33,12 +33,12 @@ TIP: Learners running Windows have had good success with http://gitforwindows.or
 == Lab 01: Setting Up The Testing Environment
 In order to give Ansible inventory to work on, we need to setup several small EC2 instances.  In your Amazon account, create the following:
 
-.a new SSH key pair
-.an Ubuntu `t2.nano` instance named Ansible Control
-.an Ubuntu `t2.nano` instance named Alpha
-.an Ubuntu `t2.nano` instance named Bravo
-.an Amazon Linux `t2.nano` instance named Charlie
-.an Amazon Linux `t2.nano` instance named Delta
+. a new SSH key pair
+. an Ubuntu `t2.nano` instance named Ansible Control
+. an Ubuntu `t2.nano` instance named Alpha
+. an Ubuntu `t2.nano` instance named Bravo
+. an Amazon Linux `t2.nano` instance named Charlie
+. an Amazon Linux `t2.nano` instance named Delta
 
 IMPORTANT: Ensure that the security group on the instances allows inbound SSH access (port 22).
 
@@ -49,12 +49,12 @@ CAUTION: Remember to not use your root account when setting things up.  An Admin
 
 Ansible uses SSH so we need to verify SSH is working as required.
 
-.copy the private half of your SSH key to the control box
-.from the control box, ensure you can SSH into Alpha
-.from the control box, ensure you can SSH into Bravo
-.from the control box, ensure you can SSH into Charlie
-.from the control box, ensure you can SSH into Delta
-.stop all of your instances
+. copy the private half of your SSH key to the control box
+. from the control box, ensure you can SSH into Alpha
+. from the control box, ensure you can SSH into Bravo
+. from the control box, ensure you can SSH into Charlie
+. from the control box, ensure you can SSH into Delta
+. stop all of your instances
 
 TIP: The `scp` command can be used to upload the key file.
 
