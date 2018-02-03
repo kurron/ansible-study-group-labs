@@ -27,12 +27,12 @@ chmod 0400 AnsibleStudyGroup.pem
 ----
 
 .SSH into Ansible Control
-[source,bash]
+[source]
 ----
 ssh -i AnsibleStudyGroup.pem ubuntu@34.12.15.121
+----
 
 IMPORTANT: the ip address will be different for your EC2 instance
-----
 
 .Copy the private half of the SSH key to Ansible Control
 [source,bash]
