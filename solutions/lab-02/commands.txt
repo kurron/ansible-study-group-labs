@@ -1,2 +1,0 @@
-ansible all  --iansible all  --inventory atlantis, --user ubuntu --module-name ping  --private-key ~/.ssh/AnsibleStudyGroup.pemnventory atlantis, --user rkurr --module-name ping  --private-key ~/.ssh/AnsibleStudyGroup.pem
-ansible all  --iansible all  --inventory hosts --user ubuntu --module-name ping  --private-key ~/.ssh/AnsibleStudyGroup.pemnventory atlantis, --user rkurr --module-name ping  --private-key ~/.ssh/AnsibleStudyGroup.pem

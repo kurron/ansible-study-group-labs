@@ -20,7 +20,7 @@ IMPORTANT: Only refer to these solutions if you are stuck and are failing to mak
 
 == Apply the ping module to Alpha using only command-line switches.
 ----
-ansible all  --inventory 12.34.56.78, --user ubuntu --module-name ping  --private-key ~/.ssh/AnsibleStudyGroup.pem
+ansible all --inventory 12.34.56.78, --user ubuntu --module-name ping  --private-key ~/.ssh/AnsibleStudyGroup.pem
 ----
 IMPORTANT: replace the ip address with yours
 
@@ -33,9 +33,9 @@ IMPORTANT: the trailing comma `,` is crucial when specifying inventory via the c
 private_key_file = ~/.ssh/AnsibleStudyGroup.pem
 ----
 
-== Apply the ping module again, using the `ansible.cfg` file this time
+== Apply the ping module again, using the configuration file this time
 ----
-ansible all  --inventory 12.34.56.78, --user ubuntu --module-name ping
+ansible all --inventory 12.34.56.78, --user ubuntu --module-name ping
 ----
 IMPORTANT: replace the ip address with yours
 
