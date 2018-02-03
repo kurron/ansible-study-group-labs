@@ -1,0 +1,45 @@
+:toc:
+:toc-placement!:
+
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
+:warning-caption: :warning:
+:caution-caption: :fire:
+
+= Lab 03: Configuring Ansible
+Ron Kurr <rkurr@jvmguy.com>
+
+
+toc::[]
+
+== Overview
+There are many ways to solve the problems presented in the lab.  These solutions are known to work, but you may have found alternative solutions.
+
+IMPORTANT: Only refer to these solutions if you are stuck and are failing to make progress.  The best way to learn is to find the information yourself and apply it.
+
+== Apply the ping module to Alpha using only command-line switches.
+----
+ansible all  --inventory 12.34.56.78, --user ubuntu --module-name ping  --private-key ~/.ssh/AnsibleStudyGroup.pem
+----
+IMPORTANT: replace the ip address with yours
+
+IMPORTANT: the trailing comma `,` is crucial when specifying inventory via the command-line
+
+== Create an ansible.cfg file, specifying the location of your private SSH key
+.ansible.cfg
+----
+[defaults]
+private_key_file = ~/.ssh/AnsibleStudyGroup.pem
+----
+
+== Apply the ping module again, using the `ansible.cfg` file this time
+----
+ansible all  --inventory 12.34.56.78, --user ubuntu --module-name ping
+----
+IMPORTANT: replace the ip address with yours
+
+TIP: The docs.ansible.com/ansible/latest/intro_configuration.html[Ansible documentation] explains the search sequence of the configuration file.
+
+== License and Credits
+This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].
