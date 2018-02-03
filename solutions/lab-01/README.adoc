@@ -18,15 +18,13 @@ There are many ways to solve the problems presented in the lab.  These solutions
 
 IMPORTANT: Only refer to these solutions if you are stuck and are failing to make progress.  The best way to learn is to find the information yourself and apply it.
 
-== Possible Solutions
-
-.Set SSH Key Permissions
+== Set SSH Key Permissions
 [source,bash]
 ----
 chmod 0400 AnsibleStudyGroup.pem
 ----
 
-.SSH into Ansible Control
+== SSH into Ansible Control
 ----
 ssh -i AnsibleStudyGroup.pem ubuntu@34.12.15.121
 ----
