@@ -30,28 +30,23 @@ ssh -i AnsibleStudyGroup.pem ubuntu@34.12.15.121
 ----
 IMPORTANT: the ip address will be different for your EC2 instance
 
-
-.Copy the private half of the SSH key to Ansible Control
+== Copy the private half of the SSH key to Ansible Control
 ----
 scp -i AnsibleStudyGroup.pem AnsibleStudyGroup.pem ubuntu@24.12.15.121:
 ----
 IMPORTANT: the trailing `:` is important as it tells `scp` to place the file into the home directory
 
-.From Ansible Control, SSH into the Alpha and Bravo
-[source,bash]
+== From Ansible Control, SSH into the Alpha and Bravo
 ----
-`ssh -i AnsibleStudyGroup.pem ubuntu@11.22.33.44`
-
+ssh -i AnsibleStudyGroup.pem ubuntu@11.22.33.44
+----
 IMPORTANT: replace the ip address with `Alpha` and `Bravo` private ip addresses
-----
 
-.From Ansible Control, SSH into the Charlie and Delta
-[source,bash]
+== From Ansible Control, SSH into the Charlie and Delta
 ----
-`ssh -i AnsibleStudyGroup.pem ec2-useru@11.22.33.44`
-
+ssh -i AnsibleStudyGroup.pem ec2-useru@11.22.33.44
+----
 IMPORTANT: replace the ip address with `Charlie` and `Delta` private ip addresses
-----
 
 == License and Credits
 This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].
