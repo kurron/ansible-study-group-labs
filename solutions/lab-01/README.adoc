@@ -27,20 +27,17 @@ chmod 0400 AnsibleStudyGroup.pem
 ----
 
 .SSH into Ansible Control
-[source]
 ----
 ssh -i AnsibleStudyGroup.pem ubuntu@34.12.15.121
 ----
-
 IMPORTANT: the ip address will be different for your EC2 instance
 
-.Copy the private half of the SSH key to Ansible Control
-[source,bash]
-----
-`scp -i AnsibleStudyGroup.pem AnsibleStudyGroup.pem ubuntu@24.12.15.121:`
 
-IMPORTANT: the trailing `:` is important as it tells `scp` to place the file into the home directory
+.Copy the private half of the SSH key to Ansible Control
 ----
+scp -i AnsibleStudyGroup.pem AnsibleStudyGroup.pem ubuntu@24.12.15.121:
+----
+IMPORTANT: the trailing `:` is important as it tells `scp` to place the file into the home directory
 
 .From Ansible Control, SSH into the Alpha and Bravo
 [source,bash]
