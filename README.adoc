@@ -81,11 +81,12 @@ ansible 2.4.3.0
   python version = 2.7.12 (default, Dec  4 2017, 14:50:18) [GCC 5.4.0 20160609]
 ----
 
-Ansible requires that Python2 be installed on all the target machines or many of the modules will not work. On the Alpha and Bravo install the following packages:
-. software-properties-common
-. python
+IMPORTANT: Ansible requires that Python2 be installed on all the target machines or many of the modules will not work. On the `Alpha` and `Bravo` install the following packages:
 
-Charlie and Delta, being Amazon Linux, already have Python installed.
+. `software-properties-common`
+. `python`
+
+`Charlie` and `Delta`, being Amazon Linux, already have Python installed.
 
 == Lab 03: Configuring Ansible
 . use the `ansible` command to apply the `ping` module to the `alpha` box.  Do *not* use a `hosts` or `ansible.cfg` file, specifying the information using command-line switches instead.
