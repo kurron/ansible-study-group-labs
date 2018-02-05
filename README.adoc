@@ -42,6 +42,8 @@ In order to give Ansible inventory to work on, we need to setup several small EC
 
 IMPORTANT: Ensure that the security group on the instances allows inbound SSH access (port 22).
 
+IMPORTANT: All instances need to have *both* a public and private ip address or packages management will not work!
+
 TIP: Store your SSH keys on a USB stick so you can use different computers to connect to your control instance.
 
 CAUTION: Remember to not use your root account when setting things up.  An Administrator IAM account is highly recommended.
@@ -79,6 +81,12 @@ ansible 2.4.3.0
   python version = 2.7.12 (default, Dec  4 2017, 14:50:18) [GCC 5.4.0 20160609]
 ----
 
+Ansible requires that Python2 be installed on all the target machines or many of the modules will not work. On the Alpha and Bravo install the following packages:
+. software-properties-common
+. python
+
+Charlie and Delta, being Amazon Linux, already have Python installed.
+
 == Lab 03: Configuring Ansible
 . use the `ansible` command to apply the `ping` module to the `alpha` box.  Do *not* use a `hosts` or `ansible.cfg` file, specifying the information using command-line switches instead.
 . create an `ansible.cfg` file, specifying the location of your private SSH key
@@ -89,6 +97,15 @@ TIP: When specifying inventory on the command line, makes sure to have a trailin
 TIP: Format of the configuration file http://docs.ansible.com/ansible/latest/intro_configuration.html[can be found here].
 
 TIP: Read the documentation to see exactly where configuration files are read from
+
+.Example Output
+----
+172.31.35.226 | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+----
+
 
 == Lab 04: Understanding Inventory
 . create a `hosts` file with two two groups.  One named `ubuntu` and one named `amazon`,  Put `alpha` and `bravo` in the `ubuntu` group and `charlie` and `delta` in the `amazon` group
