@@ -119,6 +119,18 @@ TIP: Remember, Ubuntu boxes use `ubuntu` as the user name and Amazon Linux uses 
 .Example Output
 [source,json]
 ----
+delta | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+charlie | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+bravo | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
 alpha | SUCCESS => {
     "changed": false,
     "ping": "pong"

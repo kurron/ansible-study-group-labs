@@ -1,0 +1,72 @@
+:toc:
+:toc-placement!:
+
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
+:warning-caption: :warning:
+:caution-caption: :fire:
+
+= Lab 04: Understanding Inventory
+Ron Kurr <rkurr@jvmguy.com>
+
+
+toc::[]
+
+== Overview
+There are many ways to solve the problems presented in the lab.  These solutions are known to work, but you may have found alternative solutions.
+
+IMPORTANT: Only refer to these solutions if you are stuck and are failing to make progress.  The best way to learn is to find the information yourself and apply it.
+
+== Create a hosts files
+.hosts.ini
+----
+alpha ansible_host=172.31.35.226 ansible_user=ubuntu
+bravo ansible_host=172.31.43.113 ansible_user=ubuntu
+charlie ansible_host=172.31.36.232 ansible_user=ec2-user
+delta ansible_host=172.31.36.222 ansible_user=ec2-user
+
+[ubuntu]
+alpha
+bravo
+
+[amazon]
+charlie
+delta
+
+[blue]
+alpha
+charlie
+
+[green]
+bravo
+delta
+----
+
+== Apply the ping module again, using the hosts file this time
+----
+ansible all --inventory hosts.ini --module-name ping
+----
+
+== Apply the ping module to the ubuntu group
+----
+ansible ubuntu --inventory hosts.ini --module-name ping
+----
+
+== Apply the ping module to the amazon group
+----
+ansible amazon --inventory hosts.ini --module-name ping
+----
+
+== Apply the ping module to the blue group
+----
+ansible blue --inventory hosts.ini --module-name ping
+----
+
+== Apply the ping module to the green group
+----
+ansible green --inventory hosts.ini --module-name ping
+----
+
+== License and Credits
+This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].
