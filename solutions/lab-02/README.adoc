@@ -20,11 +20,11 @@ IMPORTANT: Only refer to these solutions if you are stuck and are failing to mak
 
 == Install the Ansible PPA on the Ansible control box
 ----
-$ sudo apt-get update
-$ sudo apt-get install software-properties-common
-$ sudo apt-add-repository ppa:ansible/ansible
-$ sudo apt-get update
-$ sudo apt-get install ansible
+. sudo apt-get update
+. sudo apt-get install software-properties-common
+. sudo apt-add-repository ppa:ansible/ansible
+. sudo apt-get update
+. sudo apt-get install ansible
 ----
 
 == Have Ansible print its version to verify the installation

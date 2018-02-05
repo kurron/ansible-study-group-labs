@@ -69,6 +69,16 @@ image::aws-console.png[AWS Console]
 
 TIP: The video has the steps as does the Ansible documentation. The documentation is easier to follow.
 
+.Example Output
+----
+ansible 2.4.3.0
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = [u'/home/ubuntu/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/dist-packages/ansible
+  executable location = /usr/bin/ansible
+  python version = 2.7.12 (default, Dec  4 2017, 14:50:18) [GCC 5.4.0 20160609]
+----
+
 == Lab 03: Configuring Ansible
 . use the `ansible` command to apply the `ping` module to the `alpha` box.  Do *not* use a `hosts` or `ansible.cfg` file, specifying the information using command-line switches instead.
 . create an `ansible.cfg` file, specifying the location of your private SSH key
