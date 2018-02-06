@@ -153,7 +153,6 @@ This is to prevent man-in-the-middle attacks.  Although more secure, this warnin
 Modify your `ansible.cfg` file to disable this warning.  To simulate visiting a machine for the first time, test your changes by always removing the `known_hosts` file.  For example,
 
 ----
-[source,bash]
 rm -f ~/.ssh/known_hosts && ansible ...
 ----
 
