@@ -139,5 +139,44 @@ alpha | SUCCESS => {
 }
 ----
 
+== Lab 05: Disabling SSH Key Verification
+The first time you ssh into a box, you are presented with this warning:
+
+----
+The authenticity of host '172.31.43.113 (172.31.43.113)' can't be established.
+ECDSA key fingerprint is SHA256:CKohzQOoCI3Gx1rHRBuMgoXfqdPS+gFPCUHbubc/OIc.
+Are you sure you want to continue connecting (yes/no)?
+----
+
+This is to prevent man-in-the-middle attacks.  Although more secure, this warning does not work well in automated environments.  This is especially true in a cloud environment where machines come and on an hourly basis.
+
+Modify your `ansible.cfg` file to disable this warning.  To simulate visiting a machine for the first time, test your changes by always removing the `known_hosts` file.  For example,
+
+----
+[source,bash]
+rm -f ~/.ssh/known_hosts && ansible ...
+----
+
+You have completed the lab if you can ping all hosts and never see the warning.
+
+----
+delta | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+charlie | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+bravo | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+alpha | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+----
+
 == License and Credits
 This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].
