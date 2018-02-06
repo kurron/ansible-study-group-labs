@@ -116,6 +116,8 @@ TIP: Read the documentation to see exactly where configuration files are read fr
 
 TIP: Remember, Ubuntu boxes use `ubuntu` as the user name and Amazon Linux uses `ec2-user`
 
+TIP: A best practice is to specify your machines at the top of the inventory file and create the groups by referencing the machine names.  This avoids duplication of information, easing maintenance.
+
 .Example Output
 [source,json]
 ----
