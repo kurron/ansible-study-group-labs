@@ -18,7 +18,7 @@ There are many ways to solve the problems presented in the lab.  These solutions
 
 IMPORTANT: Only refer to these solutions if you are stuck and are failing to make progress.  The best way to learn is to find the information yourself and apply it.
 
-== Disable SSH Key Checking
+== Imply The Inventory File Location
 .ansible.cfg
 ----
 [defaults]
