@@ -1,0 +1,54 @@
+:toc:
+:toc-placement!:
+
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
+:warning-caption: :warning:
+:caution-caption: :fire:
+
+= Lab 08: Bootstrapping Boxes That Need Python Installed
+Ron Kurr <rkurr@jvmguy.com>
+
+
+toc::[]
+
+== Overview
+There are many ways to solve the problems presented in the lab.  These solutions are known to work, but you may have found alternative solutions.
+
+IMPORTANT: Only refer to these solutions if you are stuck and are failing to make progress.  The best way to learn is to find the information yourself and apply it.
+
+== Update The Inventory File
+.hosts.ini
+----
+alpha ansible_host=172.31.35.226 ansible_user=ubuntu
+bravo ansible_host=172.31.43.113 ansible_user=ubuntu
+charlie ansible_host=172.31.36.232 ansible_user=ec2-user
+delta ansible_host=172.31.36.222 ansible_user=ec2-user
+echo ansible_host=172.31.43.102 ansible_user=ubuntu
+
+[ubuntu]
+alpha
+bravo
+echo
+
+[amazon]
+charlie
+delta
+
+[blue]
+alpha
+charlie
+
+[green]
+bravo
+delta
+----
+
+== Craft an Ansible command-line
+----
+ansible ubuntu --module-name raw --args 'sudo apt-get --assume-yes install software-properties-common python'
+----
+
+== License and Credits
+This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].

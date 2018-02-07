@@ -225,6 +225,99 @@ Modify `ansible.cfg` so that the log file is created in the current directory.  
 }
 ----
 
+== Lab 08: Bootstrapping Boxes That Need Python Installed
+We have already seen that a minimal install of Python2 is required on the target machines in order for Ansible to run its modules.  Installing Python on multiple machines can be tedious and error prone.  It is possible to have Ansible do the work for us by using the http://docs.ansible.com/ansible/latest/raw_module.html[raw] module.
+
+. create a new Ubuntu instance named `Echo` but *do not install Python on it*
+. add the new instance to the inventory file, making it part of the `ubuntu` group
+. craft an Ansible command-line that uses the `raw` module to issue this command to the `ubuntu` group: `sudo apt-get --assume-yes install software-properties-common python`
+
+The lab is complete if you see that `echo` gets Python installed but `alpha` and `bravo` don't.
+
+----
+bravo | SUCCESS | rc=0 >>
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+python is already the newest version (2.7.11-1).
+software-properties-common is already the newest version (0.96.20.7).
+0 upgraded, 0 newly installed, 0 to remove and 14 not upgraded.
+Shared connection to 172.31.43.113 closed.
+
+
+alpha | SUCCESS | rc=0 >>
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+python is already the newest version (2.7.11-1).
+software-properties-common is already the newest version (0.96.20.7).
+0 upgraded, 0 newly installed, 0 to remove and 14 not upgraded.
+Shared connection to 172.31.35.226 closed.
+
+
+echo | SUCCESS | rc=0 >>
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+software-properties-common is already the newest version (0.96.20.7).
+The following additional packages will be installed:
+  libpython-stdlib libpython2.7-minimal libpython2.7-stdlib python-minimal
+  python2.7 python2.7-minimal
+Suggested packages:
+  python-doc python-tk python2.7-doc binutils binfmt-support
+The following NEW packages will be installed:
+  libpython-stdlib libpython2.7-minimal libpython2.7-stdlib python
+  python-minimal python2.7 python2.7-minimal
+0 upgraded, 7 newly installed, 0 to remove and 0 not upgraded.
+Need to get 3,908 kB of archives.
+After this operation, 16.6 MB of additional disk space will be used.
+Get:1 http://us-west-2.ec2.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpython2.7-minimal amd64 2.7.12-1ubuntu0~16.04.2 [338 kB]
+Get:2 http://us-west-2.ec2.archive.ubuntu.com/ubuntu xenial-updates/main amd64 python2.7-minimal amd64 2.7.12-1ubuntu0~16.04.2 [1,294 kB]
+Get:3 http://us-west-2.ec2.archive.ubuntu.com/ubuntu xenial/main amd64 python-minimal amd64 2.7.11-1 [28.2 kB]
+Get:4 http://us-west-2.ec2.archive.ubuntu.com/ubuntu xenial-updates/main amd64 libpython2.7-stdlib amd64 2.7.12-1ubuntu0~16.04.2 [1,880 kB]
+Get:5 http://us-west-2.ec2.archive.ubuntu.com/ubuntu xenial-updates/main amd64 python2.7 amd64 2.7.12-1ubuntu0~16.04.2 [224 kB]
+Get:6 http://us-west-2.ec2.archive.ubuntu.com/ubuntu xenial/main amd64 libpython-stdlib amd64 2.7.11-1 [7,656 B]
+Get:7 http://us-west-2.ec2.archive.ubuntu.com/ubuntu xenial/main amd64 python amd64 2.7.11-1 [137 kB]
+Fetched 3,908 kB in 0s (26.2 MB/s)
+Selecting previously unselected package libpython2.7-minimal:amd64.
+(Reading database ... 51121 files and directories currently installed.)
+Preparing to unpack .../libpython2.7-minimal_2.7.12-1ubuntu0~16.04.2_amd64.deb ...
+Unpacking libpython2.7-minimal:amd64 (2.7.12-1ubuntu0~16.04.2) ...
+Selecting previously unselected package python2.7-minimal.
+Preparing to unpack .../python2.7-minimal_2.7.12-1ubuntu0~16.04.2_amd64.deb ...
+Unpacking python2.7-minimal (2.7.12-1ubuntu0~16.04.2) ...
+Selecting previously unselected package python-minimal.
+Preparing to unpack .../python-minimal_2.7.11-1_amd64.deb ...
+Unpacking python-minimal (2.7.11-1) ...
+Selecting previously unselected package libpython2.7-stdlib:amd64.
+Preparing to unpack .../libpython2.7-stdlib_2.7.12-1ubuntu0~16.04.2_amd64.deb ...
+Unpacking libpython2.7-stdlib:amd64 (2.7.12-1ubuntu0~16.04.2) ...
+Selecting previously unselected package python2.7.
+Preparing to unpack .../python2.7_2.7.12-1ubuntu0~16.04.2_amd64.deb ...
+Unpacking python2.7 (2.7.12-1ubuntu0~16.04.2) ...
+Selecting previously unselected package libpython-stdlib:amd64.
+Preparing to unpack .../libpython-stdlib_2.7.11-1_amd64.deb ...
+Unpacking libpython-stdlib:amd64 (2.7.11-1) ...
+Processing triggers for man-db (2.7.5-1) ...
+Processing triggers for mime-support (3.59ubuntu1) ...
+Setting up libpython2.7-minimal:amd64 (2.7.12-1ubuntu0~16.04.2) ...
+Setting up python2.7-minimal (2.7.12-1ubuntu0~16.04.2) ...
+Linking and byte-compiling packages for runtime python2.7...
+Setting up python-minimal (2.7.11-1) ...
+Selecting previously unselected package python.
+(Reading database ... 51867 files and directories currently installed.)
+Preparing to unpack .../python_2.7.11-1_amd64.deb ...
+Unpacking python (2.7.11-1) ...
+Processing triggers for man-db (2.7.5-1) ...
+Setting up libpython2.7-stdlib:amd64 (2.7.12-1ubuntu0~16.04.2) ...
+Setting up python2.7 (2.7.12-1ubuntu0~16.04.2) ...
+Setting up libpython-stdlib:amd64 (2.7.11-1) ...
+Setting up python (2.7.11-1) ...
+Warning: Permanently added '172.31.43.102' (ECDSA) to the list of known hosts.
+Shared connection to 172.31.43.102 closed.
+----
+
+
 
 == License and Credits
 This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].
