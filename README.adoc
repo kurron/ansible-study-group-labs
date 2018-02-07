@@ -177,5 +177,29 @@ alpha | SUCCESS => {
 }
 ----
 
+== Lab 06: Imply The Inventory File Location
+In the previous labs, we have been specifying the inventory file to use.  To simplify the commands, let's tell Ansible which inventory file to use.
+
+Modify `ansible.cfg` so that the inventory file is implied.  You have completed the lab if all hosts can have the `ping` module applied without specifying the inventory file.
+
+----
+delta | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+charlie | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+bravo | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+alpha | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+----
+
 == License and Credits
 This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].
