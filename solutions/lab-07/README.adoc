@@ -1,0 +1,37 @@
+:toc:
+:toc-placement!:
+
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
+:warning-caption: :warning:
+:caution-caption: :fire:
+
+= Lab 07: Specify Log File Location
+Ron Kurr <rkurr@jvmguy.com>
+
+
+toc::[]
+
+== Overview
+There are many ways to solve the problems presented in the lab.  These solutions are known to work, but you may have found alternative solutions.
+
+IMPORTANT: Only refer to these solutions if you are stuck and are failing to make progress.  The best way to learn is to find the information yourself and apply it.
+
+== Specify Log File Location
+.ansible.cfg
+----
+[defaults]
+private_key_file = AnsibleStudyGroup.pem
+host_key_checking = False
+inventory = hosts.ini
+log_path = ansible.log
+----
+
+== Test The Changes
+----
+ansible all --module-name ping
+----
+
+== License and Credits
+This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].

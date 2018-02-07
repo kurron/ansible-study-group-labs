@@ -201,5 +201,30 @@ alpha | SUCCESS => {
 }
 ----
 
+== Lab 07: Specify Log File Location
+Ansible emits a log of the work it performs and you can control the location of that file.
+
+Modify `ansible.cfg` so that the log file is created in the current directory.  You have completed the lab if after you `ping` all hosts, you have a file named `ansible.log` in the current directory and it contains text similar to this:
+
+----
+2018-02-07 00:06:51,516 p=32528 u=ubuntu |  delta | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2018-02-07 00:06:51,538 p=32528 u=ubuntu |  bravo | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2018-02-07 00:06:51,549 p=32528 u=ubuntu |  alpha | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2018-02-07 00:06:51,556 p=32528 u=ubuntu |  charlie | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+----
+
+
 == License and Credits
 This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].
