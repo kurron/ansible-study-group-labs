@@ -230,7 +230,7 @@ We have already seen that a minimal install of Python2 is required on the target
 
 . create a new Ubuntu instance named `Echo` but *do not install Python on it*
 . add the new instance to the inventory file, making it part of the `ubuntu` group
-. craft an Ansible command-line that uses the `raw` module to install the `software-properties-common` and `python` packages
+. craft an Ansible command-line that uses the `raw` module to install the `software-properties-common` and `python` packages, applying it to the `ubuntu` group
 
 The lab is complete if you see that `echo` gets Python installed but `alpha` and `bravo` don't.
 
