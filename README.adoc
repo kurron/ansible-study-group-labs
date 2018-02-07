@@ -317,6 +317,8 @@ Warning: Permanently added '172.31.43.102' (ECDSA) to the list of known hosts.
 Shared connection to 172.31.43.102 closed.
 ----
 
+== Lab 09: Our First Playbook
+== Lab 10: Fun With Templates
 
 
 == License and Credits
