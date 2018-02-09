@@ -148,7 +148,7 @@ ECDSA key fingerprint is SHA256:CKohzQOoCI3Gx1rHRBuMgoXfqdPS+gFPCUHbubc/OIc.
 Are you sure you want to continue connecting (yes/no)?
 ----
 
-This is to prevent man-in-the-middle attacks.  Although more secure, this warning does not work well in automated environments.  This is especially true in a cloud environment where machines come and on an hourly basis.
+This is to prevent man-in-the-middle attacks.  Although more secure, this warning does not work well in automated environments.  This is especially true in a cloud environment where machines come and go on an hourly basis.
 
 Modify your `ansible.cfg` file to disable this warning.  To simulate visiting a machine for the first time, test your changes by always removing the `known_hosts` file.  For example,
 
@@ -180,7 +180,7 @@ alpha | SUCCESS => {
 == Lab 06: Imply The Inventory File Location
 In the previous labs, we have been specifying the inventory file to use.  To simplify the commands, let's tell Ansible which inventory file to use.
 
-Modify `ansible.cfg` so that the inventory file is implied.  You have completed the lab if all hosts can have the `ping` module applied without specifying the inventory file.
+Modify `ansible.cfg` so that the inventory file is implied.  You have completed the lab if all hosts can have the `ping` module applied without specifying the inventory file on the command-line.
 
 ----
 delta | SUCCESS => {
