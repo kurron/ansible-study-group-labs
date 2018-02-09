@@ -353,11 +353,11 @@ localhost | SUCCESS => {
 . start the `apache2` service on the `ubuntu` servers
 . start the `httpd` service on the `amazon` servers
 
-You have completed the lab if you can connect your web browser to the public ips of all your servers.  Apache should send back a "welcome" page.
+You have completed the lab if you can connect your web browser to the *public* ips of all your servers.  Apache should send back a "welcome" page.
 
-TIP: Remember, Ubuntu and Amazon Linux use different package managers
+TIP: Ubuntu and Amazon Linux use *different* package managers
 
-TIP: The state of the service should be either `restarted` or `started` and enabled
+TIP: The state of the service should be either `started` and enabled
 
 == Lab 00: Copying Files via Playbook
 == Lab 00: Fun With Templates
