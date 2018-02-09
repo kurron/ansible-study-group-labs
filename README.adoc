@@ -327,10 +327,6 @@ Much of the time, Ansible will be operating on remote machines but sometimes Ans
 
 TIP: Read the *entire* help entry
 
-TIP: Specify a connection type of `local`
-
-TIP: Specify an inventory of `localhost`
-
 You have completed the lab if Ansible reports something similar to this:
 
 ----
@@ -348,8 +344,22 @@ localhost | SUCCESS => {
 }
 ----
 
+== Lab 10: Install Apache (ad-hoc)
+. learn about the `yum` module
+. learn about the `apt` module
+. learn about the `service` module
+. install the latest `apache2` package on the `ubuntu` servers
+. install the latest `httpd` package on the `amazon` servers
+. start the `apache2` service on the `ubuntu` servers
+. start the `httpd` service on the `amazon` servers
 
-== Lab 00: Our First Playbook
+You have completed the lab if you can connect your web browser to the public ips of all your servers.  Apache should send back a "welcome" page.
+
+TIP: Remember, Ubuntu and Amazon Linux use different package managers
+
+TIP: The state of the service should be either `restarted` or `started` and enabled
+
+== Lab 00: Copying Files via Playbook
 == Lab 00: Fun With Templates
 
 

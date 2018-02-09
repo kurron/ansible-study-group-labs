@@ -7,7 +7,7 @@
 :warning-caption: :warning:
 :caution-caption: :fire:
 
-= Lab 09: Run Plays Locally
+= Lab 10: Install Apache (ad-hoc)
 Ron Kurr <rkurr@jvmguy.com>
 
 
@@ -18,25 +18,33 @@ There are many ways to solve the problems presented in the lab.  These solutions
 
 IMPORTANT: Only refer to these solutions if you are stuck and are failing to make progress.  The best way to learn is to find the information yourself and apply it.
 
-== Learn About The Setup Module
+== Learn About The Various Modules
 ----
-ansible-doc setup
-----
-
-== Run the setup module
-----
-ansible localhost --connection local --module-name setup
+ansible-doc yum
+ansible-doc apt
+ansible-doc service
 ----
 
-== Return Minimum Information
+== Install Apache On Ubuntu
 ----
-ansible localhost --connection local --module-name setup --args gather_subset=min
+ansible ubuntu --become --module-name apt --args "name=apache2 state=latest"
 ----
 
-== Return Only ansible_distribution Attributes
+== Start Apache Service On Ubuntu
 ----
-ansible localhost --connection local --module-name setup --args filter=ansible_distribution*
+ansible ubuntu --become --module-name service --args "name=apache2 enabled=yes state=restarted"
 ----
+
+== Install Apache On Amazon Linux
+----
+ansible amazon --become --module-name yum --args "name=httpd state=latest"
+----
+
+== Start Apache Service On Amazon Linux
+----
+ansible amazon --become --module-name service --args "name=httpd enabled=yes state=restarted"
+----
+
 
 == License and Credits
 This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].
