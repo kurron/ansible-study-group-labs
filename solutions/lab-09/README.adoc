@@ -1,0 +1,42 @@
+:toc:
+:toc-placement!:
+
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
+:warning-caption: :warning:
+:caution-caption: :fire:
+
+= Lab 09: Run Plays Locally
+Ron Kurr <rkurr@jvmguy.com>
+
+
+toc::[]
+
+== Overview
+There are many ways to solve the problems presented in the lab.  These solutions are known to work, but you may have found alternative solutions.
+
+IMPORTANT: Only refer to these solutions if you are stuck and are failing to make progress.  The best way to learn is to find the information yourself and apply it.
+
+== Learn About The Setup Module
+----
+ansible-doc setup
+----
+
+== Run the setup module
+----
+ansible all --connection local --inventory localhost, --module-name setup
+----
+
+== Return Minimum Information
+----
+ansible all --connection local --inventory localhost, --module-name setup --args gather_subset=min
+----
+
+== Return Only ansible_distribution Attributes
+----
+ansible all --connection local --inventory localhost, --module-name setup --args filter=ansible_distribution*
+----
+
+== License and Credits
+This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].

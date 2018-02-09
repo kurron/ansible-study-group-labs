@@ -104,7 +104,7 @@ TIP: Read the documentation to see exactly where configuration files are read fr
 
 
 == Lab 04: Understanding Inventory
-. create a `hosts` file with two two groups.  One named `ubuntu` and one named `amazon`,  Put `alpha` and `bravo` in the `ubuntu` group and `charlie` and `delta` in the `amazon` group
+. create a `hosts` file with two groups.  One named `ubuntu` and one named `amazon`,  Put `alpha` and `bravo` in the `ubuntu` group and `charlie` and `delta` in the `amazon` group
 . apply the `ping` module again, using the `hosts` file this time
 . apply the `ping` module, but only to the `ubuntu` group
 . apply the `ping` module, but only to the `amazon` group
@@ -317,7 +317,38 @@ Warning: Permanently added '172.31.43.102' (ECDSA) to the list of known hosts.
 Shared connection to 172.31.43.102 closed.
 ----
 
-== Lab 00: Run Plays Locally 
+== Lab 09: Run Plays Locally
+Much of the time, Ansible will be operating on remote machines but sometimes Ansible needs to operate on the control host. In this lab, we will learn proper command-line switches that are needed to have Ansible operate against the local machine.
+
+. learn about the `setup` module but *do not use your web browser*!
+. create a command-line that will apply the `setup` module against the local machine
+. create a command-line that will apply the `setup` module against the local machine, only returning the minimum information
+. create a command-line that will apply the `setup` module against the local machine, returning only the attributes starting with `ansible_distribution`
+
+TIP: Read the *entire* help entry
+
+TIP: Specify a connection type of `local`
+
+TIP: Specify an inventory of `localhost`
+
+You have completed the lab if Ansible reports something similar to this:
+
+----
+localhost | SUCCESS => {
+    "ansible_facts": {
+        "ansible_distribution": "Ubuntu",
+        "ansible_distribution_file_parsed": true,
+        "ansible_distribution_file_path": "/etc/os-release",
+        "ansible_distribution_file_variety": "Debian",
+        "ansible_distribution_major_version": "16",
+        "ansible_distribution_release": "xenial",
+        "ansible_distribution_version": "16.04"
+    },
+    "changed": false
+}
+----
+
+
 == Lab 00: Our First Playbook
 == Lab 00: Fun With Templates
 
