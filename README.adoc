@@ -357,10 +357,13 @@ You have completed the lab if you can connect your web browser to the *public* i
 
 TIP: Ubuntu and Amazon Linux use *different* package managers
 
-TIP: The state of the service should be either `started` and enabled
+TIP: The state of the service should be `started` and enabled
+
+TIP: Packages can only be installed by a *privileged* user
 
 == Lab 00: Copying Files via Playbook
-== Lab 00: Fun With Templates
+== Lab 00: Copying Templated Files
+== Lab 00: Conditionally Copying Files Based On Distribution
 
 
 == License and Credits
