@@ -25,6 +25,7 @@ ansible-doc debug
 
 == Create Playbook
 ----
+---
 - name: Exercise Debug Module
   hosts: all
   become: false
