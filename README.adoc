@@ -453,6 +453,40 @@ delta                      : ok=2    changed=0    unreachable=0    failed=0
 echo                       : ok=2    changed=0    unreachable=0    failed=0
 ----
 
+== Lab 13: Conditionally Print Debug Messages
+. copy `lab-12.yml` to `lab-13.yml`
+. modify the playbook to only printout the debug messages when the `--verbose` flag is active
+. test without the `--verbose` flag *and* with it
+
+TIP: Learn about the `debug` module.
+
+The lab is complete if the tasks are skipped when `--verbose` is not specified but are run when the flag is provided:
+
+----
+PLAY [Exercise Debug Module] ***************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [charlie]
+ok: [delta]
+ok: [alpha]
+ok: [bravo]
+ok: [echo]
+
+TASK [Print Hello] *************************************************************************************************************************
+skipping: [alpha]
+skipping: [bravo]
+skipping: [charlie]
+skipping: [delta]
+skipping: [echo]
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=1    changed=0    unreachable=0    failed=0
+bravo                      : ok=1    changed=0    unreachable=0    failed=0
+charlie                    : ok=1    changed=0    unreachable=0    failed=0
+delta                      : ok=1    changed=0    unreachable=0    failed=0
+echo                       : ok=1    changed=0    unreachable=0    failed=0
+----
+
 == Lab 00: Copying Files via Playbook
 == Lab 00: Copying Templated Files
 == Lab 00: Conditionally Copying Files Based On Distribution
