@@ -54,6 +54,14 @@ who: Blue
 what: hola
 ----
 
+== Create An Extra Vars File For The Blue Group
+.group_vars/green
+----
+---
+who: Green
+what: bonjour
+----
+
 == Use The Files
 ----
 ./lab-18.yml
