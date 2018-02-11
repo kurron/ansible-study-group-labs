@@ -18,15 +18,15 @@ There are many ways to solve the problems presented in the lab.  These solutions
 
 IMPORTANT: Only refer to these solutions if you are stuck and are failing to make progress.  The best way to learn is to find the information yourself and apply it.
 
-== Make a copy of lab-76.yml
+== Make a copy of lab-17.yml
 ----
 cp lab-17.yml lab-18.yml
 ----
 
 == Remove The Vars Section
+.lab-18.yml
 ----
 #!/usr/bin/env ansible-playbook
-.lab-18.yml
 ---
 - name: Print Custom Variables
   hosts: all
