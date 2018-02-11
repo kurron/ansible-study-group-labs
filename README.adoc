@@ -727,7 +727,7 @@ delta                      : ok=2    changed=0    unreachable=0    failed=0
 echo                       : ok=2    changed=0    unreachable=0    failed=0
 ----
 
-== Lab 18: Overriding Custom Variables Via Group Files
+== Lab 18: Specifying Custom Variables Via Group Files
 . copy `lab-17.yml` to `lab-18.yml`
 . learn about  http://docs.ansible.com/ansible/latest/intro_inventory.html#splitting-out-host-and-group-specific-data[Splitting Out Host and Group Specific Data]
 . edit `lab-18.yml`, removing the `vars` section

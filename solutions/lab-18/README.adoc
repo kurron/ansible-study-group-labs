@@ -7,7 +7,7 @@
 :warning-caption: :warning:
 :caution-caption: :fire:
 
-= Lab 18: Overriding Custom Variables Via Group Files
+= Lab 18: Specifying Custom Variables Via Group Files
 Ron Kurr <rkurr@jvmguy.com>
 
 
