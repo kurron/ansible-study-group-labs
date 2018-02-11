@@ -487,6 +487,105 @@ delta                      : ok=1    changed=0    unreachable=0    failed=0
 echo                       : ok=1    changed=0    unreachable=0    failed=0
 ----
 
+== Lab 14: Understanding Built-In Variables
+. copy `lab-13.yml` to `lab-14.yml`
+. learn about http://docs.ansible.com/ansible/latest/playbooks_variables.html#magic-variables-and-how-to-access-information-about-other-hosts["magic" variables]
+. modify the playbook to printout the following information for each host:
+.   Name of the groups the current host is a member of
+.   Name of the host as declared in the inventory file
+.   Name of all hosts participating in the current play
+.   Location of the inventory file being used
+
+The lab is complete when the playbook generates something similar to this:
+
+----
+Using /home/ubuntu/ansible.cfg as config file
+
+PLAY [Print Built-In Variables] ************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [charlie]
+ok: [delta]
+ok: [bravo]
+ok: [alpha]
+ok: [echo]
+
+TASK [Print Group Names] *******************************************************************************************************************
+ok: [alpha] => {
+    "msg": "alpha belongs to the groups [u'blue', u'ubuntu']"
+}
+ok: [bravo] => {
+    "msg": "bravo belongs to the groups [u'green', u'ubuntu']"
+}
+ok: [charlie] => {
+    "msg": "charlie belongs to the groups [u'amazon', u'blue']"
+}
+ok: [delta] => {
+    "msg": "delta belongs to the groups [u'amazon', u'green']"
+}
+ok: [echo] => {
+    "msg": "echo belongs to the groups [u'ubuntu']"
+}
+
+TASK [Print Inventory Host Name] ***********************************************************************************************************
+ok: [alpha] => {
+    "msg": "Host name is alpha"
+}
+ok: [bravo] => {
+    "msg": "Host name is bravo"
+}
+ok: [charlie] => {
+    "msg": "Host name is charlie"
+}
+ok: [delta] => {
+    "msg": "Host name is delta"
+}
+ok: [echo] => {
+    "msg": "Host name is echo"
+}
+
+TASK [Print Play Host Names] ***************************************************************************************************************
+ok: [alpha] => {
+    "msg": "Host name is [u'alpha', u'bravo', u'charlie', u'delta', u'echo']"
+}
+ok: [bravo] => {
+    "msg": "Host name is [u'alpha', u'bravo', u'charlie', u'delta', u'echo']"
+}
+ok: [charlie] => {
+    "msg": "Host name is [u'alpha', u'bravo', u'charlie', u'delta', u'echo']"
+}
+ok: [delta] => {
+    "msg": "Host name is [u'alpha', u'bravo', u'charlie', u'delta', u'echo']"
+}
+ok: [echo] => {
+    "msg": "Host name is [u'alpha', u'bravo', u'charlie', u'delta', u'echo']"
+}
+
+TASK [Print Inventory File Location] *******************************************************************************************************
+ok: [alpha] => {
+    "msg": "Inventory file location is /home/ubuntu/hosts.ini"
+}
+ok: [bravo] => {
+    "msg": "Inventory file location is /home/ubuntu/hosts.ini"
+}
+ok: [charlie] => {
+    "msg": "Inventory file location is /home/ubuntu/hosts.ini"
+}
+ok: [delta] => {
+    "msg": "Inventory file location is /home/ubuntu/hosts.ini"
+}
+ok: [echo] => {
+    "msg": "Inventory file location is /home/ubuntu/hosts.ini"
+}
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=5    changed=0    unreachable=0    failed=0
+bravo                      : ok=5    changed=0    unreachable=0    failed=0
+charlie                    : ok=5    changed=0    unreachable=0    failed=0
+delta                      : ok=5    changed=0    unreachable=0    failed=0
+echo                       : ok=5    changed=0    unreachable=0    failed=0
+----
+
 == Lab 00: Copying Files via Playbook
 == Lab 00: Copying Templated Files
 == Lab 00: Conditionally Copying Files Based On Distribution

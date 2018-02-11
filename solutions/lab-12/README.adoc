@@ -27,6 +27,7 @@ cp lab-11.yml lab-12.yml
 ----
 #!/usr/bin/env ansible-playbook
 
+---
 - name: Exercise Debug Module
   hosts: all
   become: false

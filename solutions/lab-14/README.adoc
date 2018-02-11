@@ -7,7 +7,7 @@
 :warning-caption: :warning:
 :caution-caption: :fire:
 
-= Lab 13: Conditionally Print Debug Messages
+= Lab 14: Understanding Built-In Variables
 Ron Kurr <rkurr@jvmguy.com>
 
 
@@ -18,29 +18,41 @@ There are many ways to solve the problems presented in the lab.  These solutions
 
 IMPORTANT: Only refer to these solutions if you are stuck and are failing to make progress.  The best way to learn is to find the information yourself and apply it.
 
-== Make a copy of lab-12.yml
+== Make a copy of lab-13.yml
 ----
-cp lab-12.yml lab-13.yml
+cp lab-13.yml lab-14.yml
 ----
 
-== Adjust the debug module to only work when --verbose is applied
+== Printout required information
 ----
 #!/usr/bin/env ansible-playbook
 
 ---
-- name: Exercise Debug Module
+- name: Print Built-In Variables
   hosts: all
   become: false
   tasks:
-      - name: Print Hello
+      - name: Print Group Names
         debug:
-            msg: 'Ron was here!'
+            msg: '{{inventory_hostname}} belongs to the groups {{group_names}}'
+            verbosity: 1
+      - name: Print Inventory Host Name
+        debug:
+            msg: 'Host name is {{inventory_hostname}}'
+            verbosity: 1
+      - name: Print Play Host Names
+        debug:
+            msg: 'Host name is {{ansible_play_batch}}'
+            verbosity: 1
+      - name: Print Inventory File Location
+        debug:
+            msg: 'Inventory file location is {{inventory_file}}'
             verbosity: 1
 ----
 
 == Make the file executable
 ----
-chmod a+x lab-13.yml
+chmod a+x lab-14.yml
 ----
 
 == License and Credits
