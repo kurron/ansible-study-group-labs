@@ -491,10 +491,12 @@ echo                       : ok=1    changed=0    unreachable=0    failed=0
 . copy `lab-13.yml` to `lab-14.yml`
 . learn about http://docs.ansible.com/ansible/latest/playbooks_variables.html#magic-variables-and-how-to-access-information-about-other-hosts["magic" variables]
 . modify the playbook to printout the following information for each host:
-.   Name of the groups the current host is a member of
-.   Name of the host as declared in the inventory file
-.   Name of all hosts participating in the current play
-.   Location of the inventory file being used
+.. Name of the groups the current host is a member of
+.. Name of the host as declared in the inventory file
+.. Name of all hosts participating in the current play
+.. Location of the inventory file being used
+
+TIP: You will need multiple tasks to accomplish this.
 
 The lab is complete when the playbook generates something similar to this:
 
