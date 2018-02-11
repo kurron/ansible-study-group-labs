@@ -597,7 +597,7 @@ echo                       : ok=5    changed=0    unreachable=0    failed=0
 .. `what`
 . modify the message to use the two variables
 
-CAUTION: We are copying *lab-12.yml*, *not* `lab-14.yml`.
+CAUTION: We are copying *lab-12.yml*, not `lab-14.yml`.
 
 The lab is complete if the playbook generates something similar to this:
 
@@ -626,6 +626,48 @@ ok: [delta] => {
 }
 ok: [echo] => {
     "msg": "Ron says hello!"
+}
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=2    changed=0    unreachable=0    failed=0
+bravo                      : ok=2    changed=0    unreachable=0    failed=0
+charlie                    : ok=2    changed=0    unreachable=0    failed=0
+delta                      : ok=2    changed=0    unreachable=0    failed=0
+echo                       : ok=2    changed=0    unreachable=0    failed=0
+----
+
+== Lab 16: Overriding Custom Variables
+. copy `lab-15.yml` to `lab-16.yml`
+. create a command-line invocation that overrides the `who` and `what` variables
+. **do not edit** `lab-16.yml`!
+
+TIP: Ansible command-line switches can be applied more than once.
+
+----
+PLAY [Print Custom Variables] **************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [charlie]
+ok: [delta]
+ok: [bravo]
+ok: [alpha]
+ok: [echo]
+
+TASK [Print Message] ***********************************************************************************************************************
+ok: [alpha] => {
+    "msg": "Logan says goodbye!"
+}
+ok: [bravo] => {
+    "msg": "Logan says goodbye!"
+}
+ok: [charlie] => {
+    "msg": "Logan says goodbye!"
+}
+ok: [delta] => {
+    "msg": "Logan says goodbye!"
+}
+ok: [echo] => {
+    "msg": "Logan says goodbye!"
 }
 
 PLAY RECAP *********************************************************************************************************************************
