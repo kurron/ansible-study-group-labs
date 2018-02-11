@@ -1,0 +1,63 @@
+:toc:
+:toc-placement!:
+
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
+:warning-caption: :warning:
+:caution-caption: :fire:
+
+= Lab 18: Overriding Custom Variables Via Group Files
+Ron Kurr <rkurr@jvmguy.com>
+
+
+toc::[]
+
+== Overview
+There are many ways to solve the problems presented in the lab.  These solutions are known to work, but you may have found alternative solutions.
+
+IMPORTANT: Only refer to these solutions if you are stuck and are failing to make progress.  The best way to learn is to find the information yourself and apply it.
+
+== Make a copy of lab-76.yml
+----
+cp lab-17.yml lab-18.yml
+----
+
+== Remove The Vars Section
+----
+#!/usr/bin/env ansible-playbook
+.lab-18.yml
+---
+- name: Print Custom Variables
+  hosts: all
+  become: false
+  tasks:
+      - name: Print Message
+        debug:
+            msg: '{{who}} says {{what}}!'
+            verbosity: 0
+----
+
+== Create An Extra Vars File For The All Group
+.group_vars/all
+----
+---
+who: All
+what: hello
+----
+
+== Create An Extra Vars File For The Blue Group
+.group_vars/blue
+----
+---
+who: Blue
+what: hola
+----
+
+== Use The Files
+----
+./lab-18.yml
+----
+
+== License and Credits
+This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].

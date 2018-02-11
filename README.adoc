@@ -727,6 +727,55 @@ delta                      : ok=2    changed=0    unreachable=0    failed=0
 echo                       : ok=2    changed=0    unreachable=0    failed=0
 ----
 
+== Lab 18: Overriding Custom Variables Via Group Files
+. copy `lab-17.yml` to `lab-18.yml`
+. learn about  http://docs.ansible.com/ansible/latest/intro_inventory.html#splitting-out-host-and-group-specific-data [Splitting Out Host and Group Specific Data]
+. edit `lab-18.yml`, removing the `vars` section
+. create a file that contains values for the `who` and `what` variables that are specific to the `all` group
+. create a file that contains values for the `who` and `what` variables that are specific to the `blue` group
+. create a command-line invocation that uses those files
+. create a file that contains values for the `who` and `what` variables that are specific to the `green` group and rerun the test.  What happens?
+. put back the `vars` section in `lab-18.yml` and re-run the test.  What happens?
+
+TIP: the names of the files matters.
+
+The lab is complete when Ansible emits something similar to this:
+
+----
+PLAY [Print Custom Variables] **************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [delta]
+ok: [charlie]
+ok: [alpha]
+ok: [bravo]
+ok: [echo]
+
+TASK [Print Message] ***********************************************************************************************************************
+ok: [alpha] => {
+    "msg": "Blue says hola!"
+}
+ok: [bravo] => {
+    "msg": "All says hello!"
+}
+ok: [charlie] => {
+    "msg": "Blue says hola!"
+}
+ok: [delta] => {
+    "msg": "All says hello!"
+}
+ok: [echo] => {
+    "msg": "All says hello!"
+}
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=2    changed=0    unreachable=0    failed=0
+bravo                      : ok=2    changed=0    unreachable=0    failed=0
+charlie                    : ok=2    changed=0    unreachable=0    failed=0
+delta                      : ok=2    changed=0    unreachable=0    failed=0
+echo                       : ok=2    changed=0    unreachable=0    failed=0
+----
+
 == Lab 00: Copying Files via Playbook
 == Lab 00: Copying Templated Files
 == Lab 00: Conditionally Copying Files Based On Distribution
