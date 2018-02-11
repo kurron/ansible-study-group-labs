@@ -643,6 +643,10 @@ echo                       : ok=2    changed=0    unreachable=0    failed=0
 
 TIP: Ansible command-line switches can be applied more than once.
 
+TIP: quotes can also be used.
+
+The lab is complete when Ansible emits something similar to this:
+
 ----
 PLAY [Print Custom Variables] **************************************************************************************************************
 
@@ -668,6 +672,51 @@ ok: [delta] => {
 }
 ok: [echo] => {
     "msg": "Logan says goodbye!"
+}
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=2    changed=0    unreachable=0    failed=0
+bravo                      : ok=2    changed=0    unreachable=0    failed=0
+charlie                    : ok=2    changed=0    unreachable=0    failed=0
+delta                      : ok=2    changed=0    unreachable=0    failed=0
+echo                       : ok=2    changed=0    unreachable=0    failed=0
+----
+
+== Lab 17: Overriding Custom Variables Via File
+. copy `lab-16.yml` to `lab-17.yml`
+. create a file that contains values for the `who` and `what` variables that are different from the defaults in the playbook
+. create a command-line invocation that uses the file
+. **do not edit** `lab-17.yml`!
+
+TIP: the format of the file matters.
+
+The lab is complete when Ansible emits something similar to this:
+
+----
+PLAY [Print Custom Variables] **************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [delta]
+ok: [charlie]
+ok: [alpha]
+ok: [echo]
+ok: [bravo]
+
+TASK [Print Message] ***********************************************************************************************************************
+ok: [alpha] => {
+    "msg": "Devan says howdy!"
+}
+ok: [bravo] => {
+    "msg": "Devan says howdy!"
+}
+ok: [charlie] => {
+    "msg": "Devan says howdy!"
+}
+ok: [delta] => {
+    "msg": "Devan says howdy!"
+}
+ok: [echo] => {
+    "msg": "Devan says howdy!"
 }
 
 PLAY RECAP *********************************************************************************************************************************
