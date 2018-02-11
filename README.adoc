@@ -361,6 +361,52 @@ TIP: The state of the service should be `started` and enabled
 
 TIP: Packages can only be installed by a *privileged* user
 
+== Lab 11: Simplest Playbook (manually)
+. learn about the `debug` module
+. create a playbook named `lab-11.yml` that applies the `debug` module to all inventory
+. the message can be anything you want
+
+You have completed the lab if Ansible reports something similar to this:
+
+----
+PLAY [Exercise Debug Module] ***************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [delta]
+ok: [charlie]
+ok: [bravo]
+ok: [echo]
+ok: [alpha]
+
+TASK [Print Hello] *************************************************************************************************************************
+ok: [alpha] => {
+    "msg": "Ron was here!"
+}
+ok: [bravo] => {
+    "msg": "Ron was here!"
+}
+ok: [charlie] => {
+    "msg": "Ron was here!"
+}
+ok: [delta] => {
+    "msg": "Ron was here!"
+}
+ok: [echo] => {
+    "msg": "Ron was here!"
+}
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=2    changed=0    unreachable=0    failed=0
+bravo                      : ok=2    changed=0    unreachable=0    failed=0
+charlie                    : ok=2    changed=0    unreachable=0    failed=0
+delta                      : ok=2    changed=0    unreachable=0    failed=0
+echo                       : ok=2    changed=0    unreachable=0    failed=0
+----
+
+TIP: Indentation matters. I use 4 space indents to make the scoping obvious.
+
+TIP: We use a different Ansible command when running playbooks.
+
 == Lab 00: Copying Files via Playbook
 == Lab 00: Copying Templated Files
 == Lab 00: Conditionally Copying Files Based On Distribution

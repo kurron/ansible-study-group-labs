@@ -1,0 +1,39 @@
+:toc:
+:toc-placement!:
+
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
+:warning-caption: :warning:
+:caution-caption: :fire:
+
+= Lab 11: Simplest Playbook (manually)
+Ron Kurr <rkurr@jvmguy.com>
+
+
+toc::[]
+
+== Overview
+There are many ways to solve the problems presented in the lab.  These solutions are known to work, but you may have found alternative solutions.
+
+IMPORTANT: Only refer to these solutions if you are stuck and are failing to make progress.  The best way to learn is to find the information yourself and apply it.
+
+== Learn About The Debug Module
+----
+ansible-doc debug
+----
+
+== Create Playbook
+----
+- name: Exercise Debug Module
+  hosts: all
+  become: false
+  tasks:
+      - name: Print Hello
+        debug:
+            msg: 'Ron was here!'
+            verbosity: 0
+----
+
+== License and Credits
+This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].
