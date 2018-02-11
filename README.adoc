@@ -729,7 +729,7 @@ echo                       : ok=2    changed=0    unreachable=0    failed=0
 
 == Lab 18: Overriding Custom Variables Via Group Files
 . copy `lab-17.yml` to `lab-18.yml`
-. learn about  http://docs.ansible.com/ansible/latest/intro_inventory.html#splitting-out-host-and-group-specific-data [Splitting Out Host and Group Specific Data]
+. learn about  http://docs.ansible.com/ansible/latest/intro_inventory.html#splitting-out-host-and-group-specific-data[Splitting Out Host and Group Specific Data]
 . edit `lab-18.yml`, removing the `vars` section
 . create a file that contains values for the `who` and `what` variables that are specific to the `all` group
 . create a file that contains values for the `who` and `what` variables that are specific to the `blue` group
