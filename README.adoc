@@ -409,6 +409,8 @@ TIP: We use a different Ansible command when running playbooks.
 
 TIP: Always specify whether running as an elevated user is required or not.
 
+TIP: Think of a play as the thing that connects hosts to tasks.
+
 == Lab 12: Simplest Playbook (automatically)
 . learn about https://bash.cyberciti.biz/guide/Shebang[Shebang]
 . copy `lab-11.yml` to `lab-12.yml`, modifying it so that you can execute `lab-12.yml`
@@ -586,6 +588,52 @@ bravo                      : ok=5    changed=0    unreachable=0    failed=0
 charlie                    : ok=5    changed=0    unreachable=0    failed=0
 delta                      : ok=5    changed=0    unreachable=0    failed=0
 echo                       : ok=5    changed=0    unreachable=0    failed=0
+----
+
+== Lab 15: Print Custom Variables
+. copy `lab-12.yml` to `lab-15.yml`
+. add two custom variables to the playbook
+.. `who`
+.. `what`
+. modify the message to use the two variables
+
+CAUTION: We are copying *lab-12.yml*, *not* `lab-14.yml`.
+
+The lab is complete if the playbook generates something similar to this:
+
+----
+PLAY [Print Custom Variables] **************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [delta]
+ok: [charlie]
+ok: [bravo]
+ok: [echo]
+ok: [alpha]
+
+TASK [Print Message] ***********************************************************************************************************************
+ok: [alpha] => {
+    "msg": "Ron says hello!"
+}
+ok: [bravo] => {
+    "msg": "Ron says hello!"
+}
+ok: [charlie] => {
+    "msg": "Ron says hello!"
+}
+ok: [delta] => {
+    "msg": "Ron says hello!"
+}
+ok: [echo] => {
+    "msg": "Ron says hello!"
+}
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=2    changed=0    unreachable=0    failed=0
+bravo                      : ok=2    changed=0    unreachable=0    failed=0
+charlie                    : ok=2    changed=0    unreachable=0    failed=0
+delta                      : ok=2    changed=0    unreachable=0    failed=0
+echo                       : ok=2    changed=0    unreachable=0    failed=0
 ----
 
 == Lab 00: Copying Files via Playbook
