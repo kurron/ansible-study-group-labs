@@ -776,6 +776,55 @@ delta                      : ok=2    changed=0    unreachable=0    failed=0
 echo                       : ok=2    changed=0    unreachable=0    failed=0
 ----
 
+== Lab 00: Ansible Tower
+== Lab 00: --syntax-check --list-hosts --list-tasks --check --diff --step --start-at-task --tags
+== Lab 00: assertions
+== Lab 00: Ansible debugger
+== Lab 00: build Docker images
+== Lab 00: build an AMI
+== Lab 00: install instances into the VPC
+== Lab 00: create VPC
+== Lab 00: tag existing EC2 instances via dynamic inventory
+== Lab 00: script module
+== Lab 00: async concurrent tasks
+== Lab 00: fact caching
+== Lab 00: ssh multiplexing
+== Lab 00: callback plugins
+== Lab 00: handlers (notify and listen)
+== Lab 00: strategies (linear vs free)
+== Lab 00: run once (run_once)
+== Lab 00: run plays against a percentage of hosts (50%)
+== Lab 00: run plays in serial (one host at a time)
+== Lab 00: specify host patterns (limit)
+== Lab 00: specify host patterns (union.intersection)
+== Lab 00: use Ansible Vault to store secrets
+== Lab 00: use Blocks for error recovery
+== Lab 00: eliminate repetition via separate files and include
+== Lab 00: all looping constructs
+== Lab 00: lookup function (redis?)
+== Lab 00: Simulating Idempotency via changed_when
+== Lab 00: Notify HipChat that the servers have been updated
+== Lab 00: Share Roles
+== Lab 00: Cronjob
+== Lab 00: Conditional Section In a Jinja2 Template
+== Lab 00: Handlers
+== Lab 00: Jinja2 For Loop
+== Lab 00: Templated Configuration File
+== Lab 00: Complex Arguments Using with_items
+== Lab 00: Install Virtualenv
+== Lab 00: Install Requirements File
+== Lab 00: Install Packages into Virtualenv
+== Lab 00: Checkout Git projects
+== Lab 00: Install multiple Python packages
+== Lab 00: Install multiple OS packages (universally)
+== Lab 00: Put secrets in a separate file
+== Lab 00: List tasks in a playbook
+== Lab 00: Using Host Vars To Set Up /etc/hosts file
+== Lab 00: Using Custom Fact Files
+== Lab 00: Dump Variable Values
+== Lab 00: Register Variable From Module Output (use debug to printout returned keys)
+== Lab 00: Create Dynamic Group Based On Distribution
+== Lab 00: Create Dynamic Inventory After EC2 Instance Creation
 == Lab 00: Copying Files via Playbook
 == Lab 00: Copying Templated Files
 == Lab 00: Conditionally Copying Files Based On Distribution
