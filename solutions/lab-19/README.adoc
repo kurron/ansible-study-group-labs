@@ -110,7 +110,8 @@ alpha                      : ok=3    changed=0    unreachable=0    failed=0
 bravo                      : ok=3    changed=0    unreachable=0    failed=0
 charlie                    : ok=3    changed=0    unreachable=0    failed=0
 delta                      : ok=3    changed=0    unreachable=0    failed=0
-echo                       : ok=3    changed=0    unreachable=0    failed=0  ----
+echo                       : ok=3    changed=0    unreachable=0    failed=0
+----
 
 == Try --step
 ----
@@ -173,7 +174,8 @@ alpha                      : ok=3    changed=0    unreachable=0    failed=0
 bravo                      : ok=3    changed=0    unreachable=0    failed=0
 charlie                    : ok=3    changed=0    unreachable=0    failed=0
 delta                      : ok=3    changed=0    unreachable=0    failed=0
-echo                       : ok=3    changed=0    unreachable=0    failed=0----
+echo                       : ok=3    changed=0    unreachable=0    failed=0
+----
 
 == License and Credits
 This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].
