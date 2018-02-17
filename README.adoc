@@ -1199,6 +1199,7 @@ localhost                  : ok=2    changed=0    unreachable=0    failed=0
 . copy `lab-25.yml` to `lab-26.yml`
 . create a play that prints time information in a *single task*
 . use the baked-in time facts as your source of information
+. the message should read "<key> is <value>"
 . only apply the play to the control machine
 
 The lab is complete when you see something similar to this:
