@@ -905,6 +905,66 @@ delta                      : ok=2    changed=0    unreachable=0    failed=0
 echo                       : ok=2    changed=0    unreachable=0    failed=0
 ----
 
+== Lab 22: Register
+In this lab, we will put together several concepts, creating a recipe that can be used in production playbooks.
+
+. copy `lab-21.yml` to `lab-22.yml`
+. create a single play the executes the `whoami` command and stores the results
+. the results are used in a message that prints the login name used to connect
+. print the entire result set, but **only when `--verbose`** is in play
+
+The lab is complete when you see something similar to this (no `--verbose`):
+
+TIP: documentation on what modules return is usually very poor so get your debug tasks working to help figure exactly what to use from the result object.
+
+----
+PLAY [Understand Registered Variables] *****************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [charlie]
+ok: [delta]
+ok: [bravo]
+ok: [alpha]
+ok: [echo]
+
+TASK [Determine Login Name] ****************************************************************************************************************
+changed: [bravo]
+changed: [echo]
+changed: [alpha]
+changed: [charlie]
+changed: [delta]
+
+TASK [debug] *******************************************************************************************************************************
+skipping: [alpha]
+skipping: [bravo]
+skipping: [charlie]
+skipping: [delta]
+skipping: [echo]
+
+TASK [Print Login Name] ********************************************************************************************************************
+ok: [alpha] => {
+    "msg": "Logged in as user ubuntu"
+}
+ok: [bravo] => {
+    "msg": "Logged in as user ubuntu"
+}
+ok: [charlie] => {
+    "msg": "Logged in as user ec2-user"
+}
+ok: [delta] => {
+    "msg": "Logged in as user ec2-user"
+}
+ok: [echo] => {
+    "msg": "Logged in as user ubuntu"
+}
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=3    changed=1    unreachable=0    failed=0
+bravo                      : ok=3    changed=1    unreachable=0    failed=0
+charlie                    : ok=3    changed=1    unreachable=0    failed=0
+delta                      : ok=3    changed=1    unreachable=0    failed=0
+echo                       : ok=3    changed=1    unreachable=0    failed=0
+----
 
 == Lab 00: User management
 == Lab 00: RabbitMQ
