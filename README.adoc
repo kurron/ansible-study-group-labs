@@ -787,10 +787,9 @@ Understanding these switches can help debugging a troublesome playbook.  You won
 . understand the `--step` switch and try it out
 
 == Lab 20: Creating Ad Hoc Groups
-Groups can be created dynamically at runtime based on facts gathered at runtime, easing the burden of maintaining an inventory file.
+Groups can be created dynamically based on facts gathered at runtime, easing the burden of maintaining an inventory file.
 
 . copy `lab-19.yml` to `lab-20.yml`
-. refresh your understanding of `group_by`
 . refresh your understanding of `group_by`
 . modify the playbook to create groups based on the Linux distribution of the host
 . create two tasks that printout out a message specific to the group
