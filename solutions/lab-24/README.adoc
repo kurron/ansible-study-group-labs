@@ -1,0 +1,50 @@
+:toc:
+:toc-placement!:
+
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
+:warning-caption: :warning:
+:caution-caption: :fire:
+
+= Lab 24: Looping (simple)
+Ron Kurr <rkurr@jvmguy.com>
+
+
+toc::[]
+
+== Overview
+There are many ways to solve the problems presented in the lab.  These solutions are known to work, but you may have found alternative solutions.
+
+IMPORTANT: Only refer to these solutions if you are stuck and are failing to make progress.  The best way to learn is to find the information yourself and apply it.
+
+== Make a copy of lab-23.yml
+----
+cp lab-23.yml lab-24.yml
+----
+
+== Playbook
+.lab-24.yml
+----
+#!/usr/bin/env ansible-playbook
+---
+- name: Looping Showcase
+  hosts: localhost
+  become: false
+  tasks:
+      - name: X-Force Members
+        debug:
+            msg: '{{ item }} was a member of X-Force'
+            verbosity: 0
+        with_items:
+        - Boom Boom
+        - Cable
+        - Cannonball
+        - Domino
+        - Feral
+        - Shatterstar
+        - Warpath
+----
+
+== License and Credits
+This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].

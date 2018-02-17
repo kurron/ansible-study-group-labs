@@ -1048,6 +1048,68 @@ delta                      : ok=3    changed=2    unreachable=0    failed=0
 echo                       : ok=3    changed=2    unreachable=0    failed=0
 ----
 
+== Lab 24: Looping (simple)
+. copy `lab-23.yml` to `lab-24.yml`
+. create a play that prints the following names in a *single task*
+.. Boom Boom
+.. Cable
+.. Cannonball
+.. Domino
+.. Feral
+.. Shatterstar
+.. Warpath
+. the message should say "<name> was a member of X-Force"
+. the play should only be applied to `localhost`
+
+The lab is completed when you see something similar to this:
+
+----
+PLAY [Looping Showcase] ********************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [localhost]
+
+TASK [X-Force Members] *********************************************************************************************************************
+ok: [localhost] => (item=Boom Boom) => {
+    "changed": false,
+    "item": "Boom Boom",
+    "msg": "Boom Boom was a member of X-Force"
+}
+ok: [localhost] => (item=Cable) => {
+    "changed": false,
+    "item": "Cable",
+    "msg": "Cable was a member of X-Force"
+}
+ok: [localhost] => (item=Cannonball) => {
+    "changed": false,
+    "item": "Cannonball",
+    "msg": "Cannonball was a member of X-Force"
+}
+ok: [localhost] => (item=Domino) => {
+    "changed": false,
+    "item": "Domino",
+    "msg": "Domino was a member of X-Force"
+}
+ok: [localhost] => (item=Feral) => {
+    "changed": false,
+    "item": "Feral",
+    "msg": "Feral was a member of X-Force"
+}
+ok: [localhost] => (item=Shatterstar) => {
+    "changed": false,
+    "item": "Shatterstar",
+    "msg": "Shatterstar was a member of X-Force"
+}
+ok: [localhost] => (item=Warpath) => {
+    "changed": false,
+    "item": "Warpath",
+    "msg": "Warpath was a member of X-Force"
+}
+
+PLAY RECAP *********************************************************************************************************************************
+localhost                  : ok=2    changed=0    unreachable=0    failed=0 
+----
+
 == Lab 00: User management
 == Lab 00: RabbitMQ
 == Lab 00: MongoDB

@@ -66,7 +66,7 @@ ansible all --module-name raw --args 'rm -f /tmp/lab-23-was-here.txt'
             verbosity: 1
 ----
 
-./lab-23.yml --verbose
+. ./lab-23.yml --verbose
 ----
 Using /home/ubuntu/ansible.cfg as config file
 
