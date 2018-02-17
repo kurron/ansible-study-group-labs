@@ -776,6 +776,9 @@ delta                      : ok=2    changed=0    unreachable=0    failed=0
 echo                       : ok=2    changed=0    unreachable=0    failed=0
 ----
 
+== Lab 00: User management
+== Lab 00: RabbitMQ
+== Lab 00: MongoDB
 == Lab 00: Ansible Tower
 == Lab 00: --syntax-check --list-hosts --list-tasks --check --diff --step --start-at-task --tags
 == Lab 00: assertions
