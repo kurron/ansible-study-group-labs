@@ -44,5 +44,147 @@ cp lab-21.yml lab-22.yml
             verbosity: 0
 ----
 
+----
+./lab-22.yml --verbose
+Using /home/ubuntu/ansible.cfg as config file
+
+PLAY [Understand Registered Variables] *****************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [delta]
+ok: [charlie]
+ok: [bravo]
+ok: [echo]
+ok: [alpha]
+
+TASK [Determine Login Name] ****************************************************************************************************************
+changed: [alpha] => {"changed": true, "cmd": ["whoami"], "delta": "0:00:00.001886", "end": "2018-02-17 16:51:43.294963", "rc": 0, "start": "2018-02-17 16:51:43.293077", "stderr": "", "stderr_lines": [], "stdout": "ubuntu", "stdout_lines": ["ubuntu"]}
+changed: [echo] => {"changed": true, "cmd": ["whoami"], "delta": "0:00:00.001981", "end": "2018-02-17 16:51:43.305739", "rc": 0, "start": "2018-02-17 16:51:43.303758", "stderr": "", "stderr_lines": [], "stdout": "ubuntu", "stdout_lines": ["ubuntu"]}
+changed: [bravo] => {"changed": true, "cmd": ["whoami"], "delta": "0:00:00.001878", "end": "2018-02-17 16:51:43.304500", "rc": 0, "start": "2018-02-17 16:51:43.302622", "stderr": "", "stderr_lines": [], "stdout": "ubuntu", "stdout_lines": ["ubuntu"]}
+changed: [delta] => {"changed": true, "cmd": ["whoami"], "delta": "0:00:00.002503", "end": "2018-02-17 16:51:43.340929", "rc": 0, "start": "2018-02-17 16:51:43.338426", "stderr": "", "stderr_lines": [], "stdout": "ec2-user", "stdout_lines": ["ec2-user"]}
+changed: [charlie] => {"changed": true, "cmd": ["whoami"], "delta": "0:00:00.002223", "end": "2018-02-17 16:51:43.340451", "rc": 0, "start": "2018-02-17 16:51:43.338228", "stderr": "", "stderr_lines": [], "stdout": "ec2-user", "stdout_lines": ["ec2-user"]}
+
+TASK [debug] *******************************************************************************************************************************
+ok: [alpha] => {
+    "login": {
+        "changed": true,
+        "cmd": [
+            "whoami"
+        ],
+        "delta": "0:00:00.001886",
+        "end": "2018-02-17 16:51:43.294963",
+        "failed": false,
+        "rc": 0,
+        "start": "2018-02-17 16:51:43.293077",
+        "stderr": "",
+        "stderr_lines": [],
+        "stdout": "ubuntu",
+        "stdout_lines": [
+            "ubuntu"
+        ]
+    }
+}
+ok: [bravo] => {
+    "login": {
+        "changed": true,
+        "cmd": [
+            "whoami"
+        ],
+        "delta": "0:00:00.001878",
+        "end": "2018-02-17 16:51:43.304500",
+        "failed": false,
+        "rc": 0,
+        "start": "2018-02-17 16:51:43.302622",
+        "stderr": "",
+        "stderr_lines": [],
+        "stdout": "ubuntu",
+        "stdout_lines": [
+            "ubuntu"
+        ]
+    }
+}
+ok: [charlie] => {
+    "login": {
+        "changed": true,
+        "cmd": [
+            "whoami"
+        ],
+        "delta": "0:00:00.002223",
+        "end": "2018-02-17 16:51:43.340451",
+        "failed": false,
+        "rc": 0,
+        "start": "2018-02-17 16:51:43.338228",
+        "stderr": "",
+        "stderr_lines": [],
+        "stdout": "ec2-user",
+        "stdout_lines": [
+            "ec2-user"
+        ]
+    }
+}
+ok: [delta] => {
+    "login": {
+        "changed": true,
+        "cmd": [
+            "whoami"
+        ],
+        "delta": "0:00:00.002503",
+        "end": "2018-02-17 16:51:43.340929",
+        "failed": false,
+        "rc": 0,
+        "start": "2018-02-17 16:51:43.338426",
+        "stderr": "",
+        "stderr_lines": [],
+        "stdout": "ec2-user",
+        "stdout_lines": [
+            "ec2-user"
+        ]
+    }
+}
+ok: [echo] => {
+    "login": {
+        "changed": true,
+        "cmd": [
+            "whoami"
+        ],
+        "delta": "0:00:00.001981",
+        "end": "2018-02-17 16:51:43.305739",
+        "failed": false,
+        "rc": 0,
+        "start": "2018-02-17 16:51:43.303758",
+        "stderr": "",
+        "stderr_lines": [],
+        "stdout": "ubuntu",
+        "stdout_lines": [
+            "ubuntu"
+        ]
+    }
+}
+
+TASK [Print Login Name] ********************************************************************************************************************
+ok: [alpha] => {
+    "msg": "Logged in as user ubuntu"
+}
+ok: [bravo] => {
+    "msg": "Logged in as user ubuntu"
+}
+ok: [charlie] => {
+    "msg": "Logged in as user ec2-user"
+}
+ok: [delta] => {
+    "msg": "Logged in as user ec2-user"
+}
+ok: [echo] => {
+    "msg": "Logged in as user ubuntu"
+}
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=4    changed=1    unreachable=0    failed=0
+bravo                      : ok=4    changed=1    unreachable=0    failed=0
+charlie                    : ok=4    changed=1    unreachable=0    failed=0
+delta                      : ok=4    changed=1    unreachable=0    failed=0
+echo                       : ok=4    changed=1    unreachable=0    failed=0
+----
+
 == License and Credits
 This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].

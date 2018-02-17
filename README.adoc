@@ -911,7 +911,7 @@ In this lab, we will put together several concepts, creating a recipe that can b
 . copy `lab-21.yml` to `lab-22.yml`
 . create a single play the executes the `whoami` command and stores the results
 . the results are used in a message that prints the login name used to connect
-. print the entire result set, but **only when `--verbose`** is in play
+. print the entire result set, but **only when `--verbose` is in play**
 
 The lab is complete when you see something similar to this (no `--verbose`):
 
