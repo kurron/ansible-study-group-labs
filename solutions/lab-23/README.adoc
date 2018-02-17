@@ -1,0 +1,122 @@
+:toc:
+:toc-placement!:
+
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
+:warning-caption: :warning:
+:caution-caption: :fire:
+
+= Lab 23: Let Ansible Help
+Ron Kurr <rkurr@jvmguy.com>
+
+
+toc::[]
+
+== Overview
+There are many ways to solve the problems presented in the lab.  These solutions are known to work, but you may have found alternative solutions.
+
+IMPORTANT: Only refer to these solutions if you are stuck and are failing to make progress.  The best way to learn is to find the information yourself and apply it.
+
+== Make a copy of lab-22.yml
+----
+cp lab-22.yml lab-23.yml
+----
+
+== Reset Testing Environment
+
+----
+ansible all --module-name raw --args 'rm -f /tmp/lab-23-was-here.txt'
+----
+
+== Playbook
+.lab-23.yml (original version)
+----
+#!/usr/bin/env ansible-playbook
+---
+- name: Let Ansible Help
+  hosts: all
+  become: false
+  tasks:
+      - name: Create an empty file
+        command: touch /tmp/lab-23-was-here.txt
+----
+
+.lab-23.yml (revised version)
+----
+#!/usr/bin/env ansible-playbook
+---
+- name: Let Ansible Help
+  hosts: all
+  become: false
+  tasks:
+      - name: Create an empty file
+        file:
+            owner: "{{ ansible_user_id }}"
+            group: "{{ ansible_user_gid }}"
+            mode: 0444
+            path: "/tmp/lab-23-was-here.txt"
+            state: touch
+      - name: Verify result
+        command: "ls -l /tmp/lab-23-was-here.txt"
+        register: permissions
+      - name: Print results
+        debug:
+            msg: '{{ permissions.stdout }}'
+            verbosity: 1
+----
+
+./lab-23.yml --verbose
+----
+Using /home/ubuntu/ansible.cfg as config file
+
+PLAY [Let Ansible Help] ********************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [charlie]
+ok: [delta]
+ok: [bravo]
+ok: [alpha]
+ok: [echo]
+
+TASK [Create an empty file] ****************************************************************************************************************
+changed: [alpha] => {"changed": true, "dest": "/tmp/lab-23-was-here.txt", "gid": 1000, "group": "ubuntu", "mode": "0444", "owner": "ubuntu", "size": 0, "state": "file", "uid": 1000}
+changed: [echo] => {"changed": true, "dest": "/tmp/lab-23-was-here.txt", "gid": 1000, "group": "ubuntu", "mode": "0444", "owner": "ubuntu", "size": 0, "state": "file", "uid": 1000}
+changed: [bravo] => {"changed": true, "dest": "/tmp/lab-23-was-here.txt", "gid": 1000, "group": "ubuntu", "mode": "0444", "owner": "ubuntu", "size": 0, "state": "file", "uid": 1000}
+changed: [charlie] => {"changed": true, "dest": "/tmp/lab-23-was-here.txt", "gid": 1000, "group": "ec2-user", "mode": "0444", "owner": "ec2-user", "size": 0, "state": "file", "uid": 1000}
+changed: [delta] => {"changed": true, "dest": "/tmp/lab-23-was-here.txt", "gid": 1000, "group": "ec2-user", "mode": "0444", "owner": "ec2-user", "size": 0, "state": "file", "uid": 1000}
+
+TASK [Verify result] ***********************************************************************************************************************
+changed: [alpha] => {"changed": true, "cmd": ["ls", "-l", "/tmp/lab-23-was-here.txt"], "delta": "0:00:00.002264", "end": "2018-02-17 17:22:56.974773", "rc": 0, "start": "2018-02-17 17:22:56.972509", "stderr": "", "stderr_lines": [], "stdout": "-r--r--r-- 1 ubuntu ubuntu 0 Feb 17 17:22 /tmp/lab-23-was-here.txt", "stdout_lines": ["-r--r--r-- 1 ubuntu ubuntu 0 Feb 17 17:22 /tmp/lab-23-was-here.txt"]}
+changed: [echo] => {"changed": true, "cmd": ["ls", "-l", "/tmp/lab-23-was-here.txt"], "delta": "0:00:00.002349", "end": "2018-02-17 17:22:56.977636", "rc": 0, "start": "2018-02-17 17:22:56.975287", "stderr": "", "stderr_lines": [], "stdout": "-r--r--r-- 1 ubuntu ubuntu 0 Feb 17 17:22 /tmp/lab-23-was-here.txt", "stdout_lines": ["-r--r--r-- 1 ubuntu ubuntu 0 Feb 17 17:22 /tmp/lab-23-was-here.txt"]}
+changed: [bravo] => {"changed": true, "cmd": ["ls", "-l", "/tmp/lab-23-was-here.txt"], "delta": "0:00:00.002316", "end": "2018-02-17 17:22:56.983974", "rc": 0, "start": "2018-02-17 17:22:56.981658", "stderr": "", "stderr_lines": [], "stdout": "-r--r--r-- 1 ubuntu ubuntu 0 Feb 17 17:22 /tmp/lab-23-was-here.txt", "stdout_lines": ["-r--r--r-- 1 ubuntu ubuntu 0 Feb 17 17:22 /tmp/lab-23-was-here.txt"]}
+changed: [charlie] => {"changed": true, "cmd": ["ls", "-l", "/tmp/lab-23-was-here.txt"], "delta": "0:00:00.002682", "end": "2018-02-17 17:22:57.030263", "rc": 0, "start": "2018-02-17 17:22:57.027581", "stderr": "", "stderr_lines": [], "stdout": "-r--r--r-- 1 ec2-user ec2-user 0 Feb 17 17:22 /tmp/lab-23-was-here.txt", "stdout_lines": ["-r--r--r-- 1 ec2-user ec2-user 0 Feb 17 17:22 /tmp/lab-23-was-here.txt"]}
+changed: [delta] => {"changed": true, "cmd": ["ls", "-l", "/tmp/lab-23-was-here.txt"], "delta": "0:00:00.002888", "end": "2018-02-17 17:22:57.033244", "rc": 0, "start": "2018-02-17 17:22:57.030356", "stderr": "", "stderr_lines": [], "stdout": "-r--r--r-- 1 ec2-user ec2-user 0 Feb 17 17:22 /tmp/lab-23-was-here.txt", "stdout_lines": ["-r--r--r-- 1 ec2-user ec2-user 0 Feb 17 17:22 /tmp/lab-23-was-here.txt"]}
+
+TASK [Print results] ***********************************************************************************************************************
+ok: [alpha] => {
+    "msg": "-r--r--r-- 1 ubuntu ubuntu 0 Feb 17 17:22 /tmp/lab-23-was-here.txt"
+}
+ok: [bravo] => {
+    "msg": "-r--r--r-- 1 ubuntu ubuntu 0 Feb 17 17:22 /tmp/lab-23-was-here.txt"
+}
+ok: [charlie] => {
+    "msg": "-r--r--r-- 1 ec2-user ec2-user 0 Feb 17 17:22 /tmp/lab-23-was-here.txt"
+}
+ok: [delta] => {
+    "msg": "-r--r--r-- 1 ec2-user ec2-user 0 Feb 17 17:22 /tmp/lab-23-was-here.txt"
+}
+ok: [echo] => {
+    "msg": "-r--r--r-- 1 ubuntu ubuntu 0 Feb 17 17:22 /tmp/lab-23-was-here.txt"
+}
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=4    changed=2    unreachable=0    failed=0
+bravo                      : ok=4    changed=2    unreachable=0    failed=0
+charlie                    : ok=4    changed=2    unreachable=0    failed=0
+delta                      : ok=4    changed=2    unreachable=0    failed=0
+echo                       : ok=4    changed=2    unreachable=0    failed=0
+----
+
+== License and Credits
+This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].

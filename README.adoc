@@ -913,9 +913,9 @@ In this lab, we will put together several concepts, creating a recipe that can b
 . the results are used in a message that prints the login name used to connect
 . print the entire result set, but **only when `--verbose` is in play**
 
-The lab is complete when you see something similar to this (no `--verbose`):
+TIP: documentation on module return values usually is very poor so get your debug task working to help figure exactly what to use from the result object.
 
-TIP: documentation on what modules return is usually very poor so get your debug tasks working to help figure exactly what to use from the result object.
+The lab is complete when you see something similar to this (no `--verbose`):
 
 ----
 PLAY [Understand Registered Variables] *****************************************************************************************************
@@ -964,6 +964,88 @@ bravo                      : ok=3    changed=1    unreachable=0    failed=0
 charlie                    : ok=3    changed=1    unreachable=0    failed=0
 delta                      : ok=3    changed=1    unreachable=0    failed=0
 echo                       : ok=3    changed=1    unreachable=0    failed=0
+----
+
+== Lab 23: Let Ansible Help
+Ansible has so many modules it is easy to not realize that a task you are doing by hand can be more easily accomplished by a module.
+
+. copy `lab-22.yml` to `lab-23.yml`
+. create a single play that uses the `command` module to run `touch /tmp/lab-23-was-here.txt`
+. notice the warning
+. take Ansible's advice and rework the task
+
+TIP: you can use an ad-hoc command to remove the file if you need to reset things during testing
+
+TIP: have a task verify the file's existence so you don't have to do it by hand
+
+The first part of the lab is complete when you see the following:
+
+----
+PLAY [Let Ansible Help] ********************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [delta]
+ok: [charlie]
+ok: [bravo]
+ok: [alpha]
+ok: [echo]
+
+TASK [Create an empty file] ****************************************************************************************************************
+ [WARNING]: Consider using file module with state=touch rather than running touch
+
+changed: [bravo]
+changed: [alpha]
+changed: [echo]
+changed: [charlie]
+changed: [delta]
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=2    changed=1    unreachable=0    failed=0
+bravo                      : ok=2    changed=1    unreachable=0    failed=0
+charlie                    : ok=2    changed=1    unreachable=0    failed=0
+delta                      : ok=2    changed=1    unreachable=0    failed=0
+echo                       : ok=2    changed=1    unreachable=0    failed=0
+----
+
+The second part of the lab is complete when you see the following:
+
+----
+PLAY [Let Ansible Help] ********************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [charlie]
+ok: [delta]
+ok: [bravo]
+ok: [alpha]
+ok: [echo]
+
+TASK [Create an empty file] ****************************************************************************************************************
+changed: [bravo]
+changed: [alpha]
+changed: [echo]
+changed: [delta]
+changed: [charlie]
+
+TASK [Verify result] ***********************************************************************************************************************
+changed: [alpha]
+changed: [echo]
+changed: [bravo]
+changed: [charlie]
+changed: [delta]
+
+TASK [Print results] ***********************************************************************************************************************
+skipping: [alpha]
+skipping: [bravo]
+skipping: [charlie]
+skipping: [delta]
+skipping: [echo]
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=3    changed=2    unreachable=0    failed=0
+bravo                      : ok=3    changed=2    unreachable=0    failed=0
+charlie                    : ok=3    changed=2    unreachable=0    failed=0
+delta                      : ok=3    changed=2    unreachable=0    failed=0
+echo                       : ok=3    changed=2    unreachable=0    failed=0
 ----
 
 == Lab 00: User management
