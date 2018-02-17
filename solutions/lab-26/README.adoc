@@ -7,7 +7,7 @@
 :warning-caption: :warning:
 :caution-caption: :fire:
 
-= Lab 25: Looping (complex)
+= Lab 26: Looping (key-value pairs)
 Ron Kurr <rkurr@jvmguy.com>
 
 
@@ -18,13 +18,13 @@ There are many ways to solve the problems presented in the lab.  These solutions
 
 IMPORTANT: Only refer to these solutions if you are stuck and are failing to make progress.  The best way to learn is to find the information yourself and apply it.
 
-== Make a copy of lab-24.yml
+== Make a copy of lab-25.yml
 ----
-cp lab-24.yml lab-25.yml
+cp lab-25.yml lab-26.yml
 ----
 
 == Playbook
-.lab-25.yml
+.lab-26.yml
 ----
 #!/usr/bin/env ansible-playbook
 ---
@@ -32,18 +32,11 @@ cp lab-24.yml lab-25.yml
   hosts: localhost
   become: false
   tasks:
-      - name: X-Force Members
+      - name: Print Time Information
         debug:
-            msg: '{{ item.name }} is {{ item.gender }}'
+            msg: "{{ item.key }} is {{ item.value }}"
             verbosity: 0
-        with_items:
-        - { name: 'Boom Boom', gender: 'female' }
-        - { name: 'Cable', gender: 'male' }
-        - { name: 'Cannonball', gender: 'male' }
-        - { name: 'Domino', gender: 'female' }
-        - { name: 'Feral', gender: 'female' }
-        - { name: 'Shatterstar', gender: 'male' }
-        - { name: 'Warpath', gender: 'male' }
+        with_dict: '{{ ansible_date_time }}'
 ----
 
 == License and Credits

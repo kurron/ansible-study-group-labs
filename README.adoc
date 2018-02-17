@@ -1195,6 +1195,170 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=2    changed=0    unreachable=0    failed=0
 ----
 
+== Lab 26: Looping (key-value pairs)
+. copy `lab-25.yml` to `lab-26.yml`
+. create a play that prints time information in a *single task*
+. use the baked-in time facts as your source of information
+. only apply the play to the control machine
+
+The lab is complete when you see something similar to this:
+
+----
+PLAY [Looping Showcase] ********************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [localhost]
+
+TASK [Print Time Information] **************************************************************************************************************
+ok: [localhost] => (item={'value': u'6', 'key': u'weekday_number'}) => {
+    "changed": false,
+    "item": {
+        "key": "weekday_number",
+        "value": "6"
+    },
+    "msg": "weekday_number is 6"
+}
+ok: [localhost] => (item={'value': u'20180217T183640', 'key': u'iso8601_basic_short'}) => {
+    "changed": false,
+    "item": {
+        "key": "iso8601_basic_short",
+        "value": "20180217T183640"
+    },
+    "msg": "iso8601_basic_short is 20180217T183640"
+}
+ok: [localhost] => (item={'value': u'UTC', 'key': u'tz'}) => {
+    "changed": false,
+    "item": {
+        "key": "tz",
+        "value": "UTC"
+    },
+    "msg": "tz is UTC"
+}
+ok: [localhost] => (item={'value': u'07', 'key': u'weeknumber'}) => {
+    "changed": false,
+    "item": {
+        "key": "weeknumber",
+        "value": "07"
+    },
+    "msg": "weeknumber is 07"
+}
+ok: [localhost] => (item={'value': u'18', 'key': u'hour'}) => {
+    "changed": false,
+    "item": {
+        "key": "hour",
+        "value": "18"
+    },
+    "msg": "hour is 18"
+}
+ok: [localhost] => (item={'value': u'2018', 'key': u'year'}) => {
+    "changed": false,
+    "item": {
+        "key": "year",
+        "value": "2018"
+    },
+    "msg": "year is 2018"
+}
+ok: [localhost] => (item={'value': u'36', 'key': u'minute'}) => {
+    "changed": false,
+    "item": {
+        "key": "minute",
+        "value": "36"
+    },
+    "msg": "minute is 36"
+}
+ok: [localhost] => (item={'value': u'+0000', 'key': u'tz_offset'}) => {
+    "changed": false,
+    "item": {
+        "key": "tz_offset",
+        "value": "+0000"
+    },
+    "msg": "tz_offset is +0000"
+}
+ok: [localhost] => (item={'value': u'02', 'key': u'month'}) => {
+    "changed": false,
+    "item": {
+        "key": "month",
+        "value": "02"
+    },
+    "msg": "month is 02"
+}
+ok: [localhost] => (item={'value': u'1518892600', 'key': u'epoch'}) => {
+    "changed": false,
+    "item": {
+        "key": "epoch",
+        "value": "1518892600"
+    },
+    "msg": "epoch is 1518892600"
+}
+ok: [localhost] => (item={'value': u'2018-02-17T18:36:40.994595Z', 'key': u'iso8601_micro'}) => {
+    "changed": false,
+    "item": {
+        "key": "iso8601_micro",
+        "value": "2018-02-17T18:36:40.994595Z"
+    },
+    "msg": "iso8601_micro is 2018-02-17T18:36:40.994595Z"
+}
+ok: [localhost] => (item={'value': u'Saturday', 'key': u'weekday'}) => {
+    "changed": false,
+    "item": {
+        "key": "weekday",
+        "value": "Saturday"
+    },
+    "msg": "weekday is Saturday"
+}
+ok: [localhost] => (item={'value': u'18:36:40', 'key': u'time'}) => {
+    "changed": false,
+    "item": {
+        "key": "time",
+        "value": "18:36:40"
+    },
+    "msg": "time is 18:36:40"
+}
+ok: [localhost] => (item={'value': u'2018-02-17', 'key': u'date'}) => {
+    "changed": false,
+    "item": {
+        "key": "date",
+        "value": "2018-02-17"
+    },
+    "msg": "date is 2018-02-17"
+}
+ok: [localhost] => (item={'value': u'2018-02-17T18:36:40Z', 'key': u'iso8601'}) => {
+    "changed": false,
+    "item": {
+        "key": "iso8601",
+        "value": "2018-02-17T18:36:40Z"
+    },
+    "msg": "iso8601 is 2018-02-17T18:36:40Z"
+}
+ok: [localhost] => (item={'value': u'17', 'key': u'day'}) => {
+    "changed": false,
+    "item": {
+        "key": "day",
+        "value": "17"
+    },
+    "msg": "day is 17"
+}
+ok: [localhost] => (item={'value': u'20180217T183640994532', 'key': u'iso8601_basic'}) => {
+    "changed": false,
+    "item": {
+        "key": "iso8601_basic",
+        "value": "20180217T183640994532"
+    },
+    "msg": "iso8601_basic is 20180217T183640994532"
+}
+ok: [localhost] => (item={'value': u'40', 'key': u'second'}) => {
+    "changed": false,
+    "item": {
+        "key": "second",
+        "value": "40"
+    },
+    "msg": "second is 40"
+}
+
+PLAY RECAP *********************************************************************************************************************************
+localhost                  : ok=2    changed=0    unreachable=0    failed=0
+----
+
 == Lab 00: User management
 == Lab 00: RabbitMQ
 == Lab 00: MongoDB
