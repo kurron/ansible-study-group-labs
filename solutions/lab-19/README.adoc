@@ -1,0 +1,179 @@
+:toc:
+:toc-placement!:
+
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
+:warning-caption: :warning:
+:caution-caption: :fire:
+
+= Lab 19: Tips and Tricks
+Ron Kurr <rkurr@jvmguy.com>
+
+
+toc::[]
+
+== Overview
+There are many ways to solve the problems presented in the lab.  These solutions are known to work, but you may have found alternative solutions.
+
+IMPORTANT: Only refer to these solutions if you are stuck and are failing to make progress.  The best way to learn is to find the information yourself and apply it.
+
+== Make a copy of lab-18.yml
+----
+cp lab-18.yml lab-19.yml
+----
+
+== Try --syntax-check
+----
+./lab-19.yml --syntax-check
+
+playbook: ./lab-19.yml
+----
+
+== Try --list-hosts
+----
+./lab-19.yml --list-hosts
+
+playbook: ./lab-19.yml
+
+ play #1 (all): Print Custom Variables	TAGS: []
+   pattern: [u'all']
+   hosts (5):
+     echo
+     alpha
+     delta
+     charlie
+     bravo
+----
+
+== Try --list-tasks
+----
+./lab-19.yml --list-tasks
+
+playbook: ./lab-19.yml
+
+  play #1 (all): Print Custom Variables	TAGS: []
+    tasks:
+      Print Message	TAGS: []
+      Dump Variable	TAGS: []
+----
+
+== Try --check
+----
+./lab-19.yml --check
+
+PLAY [Print Custom Variables] **************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [charlie]
+ok: [delta]
+ok: [bravo]
+ok: [alpha]
+ok: [echo]
+
+TASK [Print Message] ***********************************************************************************************************************
+ok: [alpha] => {
+    "msg": "Blue says hola!"
+}
+ok: [bravo] => {
+    "msg": "Green says bonjour!"
+}
+ok: [charlie] => {
+    "msg": "Blue says hola!"
+}
+ok: [delta] => {
+    "msg": "Green says bonjour!"
+}
+ok: [echo] => {
+    "msg": "All says hello!"
+}
+
+TASK [Dump Variable] ***********************************************************************************************************************
+ok: [alpha] => {
+    "who": "Blue"
+}
+ok: [bravo] => {
+    "who": "Green"
+}
+ok: [charlie] => {
+    "who": "Blue"
+}
+ok: [delta] => {
+    "who": "Green"
+}
+ok: [echo] => {
+    "who": "All"
+}
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=3    changed=0    unreachable=0    failed=0
+bravo                      : ok=3    changed=0    unreachable=0    failed=0
+charlie                    : ok=3    changed=0    unreachable=0    failed=0
+delta                      : ok=3    changed=0    unreachable=0    failed=0
+echo                       : ok=3    changed=0    unreachable=0    failed=0  ----
+
+== Try --step
+----
+./lab-19.yml --step
+
+PLAY [Print Custom Variables] **************************************************************************************************************
+Perform task: TASK: Gathering Facts (N)o/(y)es/(c)ontinue: y
+
+Perform task: TASK: Gathering Facts (N)o/(y)es/(c)ontinue: *********************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [charlie]
+ok: [delta]
+ok: [alpha]
+ok: [bravo]
+ok: [echo]
+Perform task: TASK: Print Message (N)o/(y)es/(c)ontinue: y
+
+Perform task: TASK: Print Message (N)o/(y)es/(c)ontinue: ***********************************************************************************
+
+TASK [Print Message] ***********************************************************************************************************************
+ok: [alpha] => {
+    "msg": "Blue says hola!"
+}
+ok: [bravo] => {
+    "msg": "Green says bonjour!"
+}
+ok: [charlie] => {
+    "msg": "Blue says hola!"
+}
+ok: [delta] => {
+    "msg": "Green says bonjour!"
+}
+ok: [echo] => {
+    "msg": "All says hello!"
+}
+Perform task: TASK: Dump Variable (N)o/(y)es/(c)ontinue: y
+
+Perform task: TASK: Dump Variable (N)o/(y)es/(c)ontinue: ***********************************************************************************
+
+TASK [Dump Variable] ***********************************************************************************************************************
+ok: [alpha] => {
+    "who": "Blue"
+}
+ok: [bravo] => {
+    "who": "Green"
+}
+ok: [charlie] => {
+    "who": "Blue"
+}
+ok: [delta] => {
+    "who": "Green"
+}
+ok: [echo] => {
+    "who": "All"
+}
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=3    changed=0    unreachable=0    failed=0
+bravo                      : ok=3    changed=0    unreachable=0    failed=0
+charlie                    : ok=3    changed=0    unreachable=0    failed=0
+delta                      : ok=3    changed=0    unreachable=0    failed=0
+echo                       : ok=3    changed=0    unreachable=0    failed=0----
+
+== License and Credits
+This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].

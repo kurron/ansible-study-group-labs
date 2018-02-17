@@ -776,11 +776,20 @@ delta                      : ok=2    changed=0    unreachable=0    failed=0
 echo                       : ok=2    changed=0    unreachable=0    failed=0
 ----
 
+== Lab 19: Tips and Tricks
+Understanding these switches can help debugging a troublesome playbook.  You won't use them everyday but they do come in handy when trying to understand what is going wrong.
+
+. understand the `--syntax-check` switch and try it out
+. understand the `--list-hosts` switch and try it out
+. understand the `--list-tasks` switch and try it out
+. understand the `--check` switch and try it out
+. understand the `--step` switch and try it out
+
 == Lab 00: User management
 == Lab 00: RabbitMQ
 == Lab 00: MongoDB
 == Lab 00: Ansible Tower
-== Lab 00: --syntax-check --list-hosts --list-tasks --check --diff --step --start-at-task --tags
+== Lab 00: --diff --start-at-task --list-tags --tags
 == Lab 00: assertions
 == Lab 00: Ansible debugger
 == Lab 00: build Docker images
