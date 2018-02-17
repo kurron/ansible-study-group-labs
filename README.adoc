@@ -792,7 +792,7 @@ Groups can be created dynamically based on facts gathered at runtime, easing the
 . copy `lab-19.yml` to `lab-20.yml`
 . refresh your understanding of `group_by`
 . modify the playbook to create groups based on the Linux distribution of the host
-. create two tasks that printout out a message specific to the group
+. create two plays that printout out a message specific to the group
 
 TIP: refresh yourself with the `setup` module
 
@@ -855,6 +855,55 @@ delta                      : ok=4    changed=0    unreachable=0    failed=0
 echo                       : ok=4    changed=0    unreachable=0    failed=0
 ----
 
+== Lab 21: Conditionally Running Tasks
+In this lab, we will explore a more practical way of conditionally applying tasks based on facts.
+
+. copy `lab-20.yml` to `lab-21.yml`
+. modify the playbook so that a **single** play prints out different messages, depending on the distribution of the target machine.
+
+The lab is complete if you see something similar to this:
+
+----
+PLAY [Print messages based on distribution] ************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [charlie]
+ok: [delta]
+ok: [alpha]
+ok: [echo]
+ok: [bravo]
+
+TASK [Print Ubuntu Message] ****************************************************************************************************************
+skipping: [charlie]
+ok: [alpha] => {
+    "msg": "Ubuntu rules!"
+}
+skipping: [delta]
+ok: [bravo] => {
+    "msg": "Ubuntu rules!"
+}
+ok: [echo] => {
+    "msg": "Ubuntu rules!"
+}
+
+TASK [Print Amazon Message] ****************************************************************************************************************
+skipping: [alpha]
+skipping: [bravo]
+skipping: [echo]
+ok: [charlie] => {
+    "msg": "Amazon rules!"
+}
+ok: [delta] => {
+    "msg": "Amazon rules!"
+}
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=2    changed=0    unreachable=0    failed=0
+bravo                      : ok=2    changed=0    unreachable=0    failed=0
+charlie                    : ok=2    changed=0    unreachable=0    failed=0
+delta                      : ok=2    changed=0    unreachable=0    failed=0
+echo                       : ok=2    changed=0    unreachable=0    failed=0
+----
 
 
 == Lab 00: User management

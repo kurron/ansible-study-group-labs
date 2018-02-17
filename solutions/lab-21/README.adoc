@@ -1,0 +1,48 @@
+:toc:
+:toc-placement!:
+
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
+:warning-caption: :warning:
+:caution-caption: :fire:
+
+= Lab 21: Conditionally Running Tasks
+Ron Kurr <rkurr@jvmguy.com>
+
+
+toc::[]
+
+== Overview
+There are many ways to solve the problems presented in the lab.  These solutions are known to work, but you may have found alternative solutions.
+
+IMPORTANT: Only refer to these solutions if you are stuck and are failing to make progress.  The best way to learn is to find the information yourself and apply it.
+
+== Make a copy of lab-20.yml
+----
+cp lab-20.yml lab-21.yml
+----
+
+== Playbook
+.lab-21.yml
+----
+#!/usr/bin/env ansible-playbook
+---
+- name: Print messages based on distribution
+  hosts: all
+  become: false
+  tasks:
+      - name: Print Ubuntu Message
+        debug:
+            msg: 'Ubuntu rules!'
+            verbosity: 0
+        when: ansible_distribution == "Ubuntu"
+      - name: Print Amazon Message
+        debug:
+            msg: 'Amazon rules!'
+            verbosity: 0
+        when: ansible_distribution == "Amazon"
+----
+
+== License and Credits
+This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].
