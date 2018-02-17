@@ -1107,7 +1107,92 @@ ok: [localhost] => (item=Warpath) => {
 }
 
 PLAY RECAP *********************************************************************************************************************************
-localhost                  : ok=2    changed=0    unreachable=0    failed=0 
+localhost                  : ok=2    changed=0    unreachable=0    failed=0
+----
+
+== Lab 25: Looping (complex)
+. copy `lab-24.yml` to `lab-25.yml`
+. create a play that prints the following name/gender pairs in a *single task*
+.. Boom Boom (female)
+.. Cable (male)
+.. Cannonball (male)
+.. Domino (female)
+.. Feral (female)
+.. Shatterstar (male)
+.. Warpath (male)
+. the message should say "<name> is <gender>"
+. the play should only be applied to `localhost`
+
+CAUTION: this form is not showcased in the video but is in the Ansible documentation
+
+The lab is completed when you see something similar to this:
+
+----
+PLAY [Looping Showcase] ********************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [localhost]
+
+TASK [X-Force Members] *********************************************************************************************************************
+ok: [localhost] => (item={u'gender': u'female', u'name': u'Boom Boom'}) => {
+    "changed": false,
+    "item": {
+        "gender": "female",
+        "name": "Boom Boom"
+    },
+    "msg": "Boom Boom is female"
+}
+ok: [localhost] => (item={u'gender': u'male', u'name': u'Cable'}) => {
+    "changed": false,
+    "item": {
+        "gender": "male",
+        "name": "Cable"
+    },
+    "msg": "Cable is male"
+}
+ok: [localhost] => (item={u'gender': u'male', u'name': u'Cannonball'}) => {
+    "changed": false,
+    "item": {
+        "gender": "male",
+        "name": "Cannonball"
+    },
+    "msg": "Cannonball is male"
+}
+ok: [localhost] => (item={u'gender': u'female', u'name': u'Domino'}) => {
+    "changed": false,
+    "item": {
+        "gender": "female",
+        "name": "Domino"
+    },
+    "msg": "Domino is female"
+}
+ok: [localhost] => (item={u'gender': u'female', u'name': u'Feral'}) => {
+    "changed": false,
+    "item": {
+        "gender": "female",
+        "name": "Feral"
+    },
+    "msg": "Feral is female"
+}
+ok: [localhost] => (item={u'gender': u'male', u'name': u'Shatterstar'}) => {
+    "changed": false,
+    "item": {
+        "gender": "male",
+        "name": "Shatterstar"
+    },
+    "msg": "Shatterstar is male"
+}
+ok: [localhost] => (item={u'gender': u'male', u'name': u'Warpath'}) => {
+    "changed": false,
+    "item": {
+        "gender": "male",
+        "name": "Warpath"
+    },
+    "msg": "Warpath is male"
+}
+
+PLAY RECAP *********************************************************************************************************************************
+localhost                  : ok=2    changed=0    unreachable=0    failed=0
 ----
 
 == Lab 00: User management

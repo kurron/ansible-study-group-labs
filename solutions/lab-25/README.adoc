@@ -1,0 +1,50 @@
+:toc:
+:toc-placement!:
+
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
+:warning-caption: :warning:
+:caution-caption: :fire:
+
+= Lab 25: Looping (complex)
+Ron Kurr <rkurr@jvmguy.com>
+
+
+toc::[]
+
+== Overview
+There are many ways to solve the problems presented in the lab.  These solutions are known to work, but you may have found alternative solutions.
+
+IMPORTANT: Only refer to these solutions if you are stuck and are failing to make progress.  The best way to learn is to find the information yourself and apply it.
+
+== Make a copy of lab-24.yml
+----
+cp lab-24.yml lab-25.yml
+----
+
+== Playbook
+.lab-24.yml
+----
+#!/usr/bin/env ansible-playbook
+---
+- name: Looping Showcase
+  hosts: localhost
+  become: false
+  tasks:
+      - name: X-Force Members
+        debug:
+            msg: '{{ item.name }} is {{ item.gender }}'
+            verbosity: 0
+        with_items:
+        - { name: 'Boom Boom', gender: 'female' }
+        - { name: 'Cable', gender: 'male' }
+        - { name: 'Cannonball', gender: 'male' }
+        - { name: 'Domino', gender: 'female' }
+        - { name: 'Feral', gender: 'female' }
+        - { name: 'Shatterstar', gender: 'male' }
+        - { name: 'Warpath', gender: 'male' }
+----
+
+== License and Credits
+This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].
