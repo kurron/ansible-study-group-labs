@@ -779,11 +779,84 @@ echo                       : ok=2    changed=0    unreachable=0    failed=0
 == Lab 19: Tips and Tricks
 Understanding these switches can help debugging a troublesome playbook.  You won't use them everyday but they do come in handy when trying to understand what is going wrong.
 
+. copy `lab-18.yml` to `lab-19.yml`
 . understand the `--syntax-check` switch and try it out
 . understand the `--list-hosts` switch and try it out
 . understand the `--list-tasks` switch and try it out
 . understand the `--check` switch and try it out
 . understand the `--step` switch and try it out
+
+== Lab 20: Creating Ad Hoc Groups
+Groups can be created dynamically at runtime based on facts gathered at runtime, easing the burden of maintaining an inventory file.
+
+. copy `lab-19.yml` to `lab-20.yml`
+. refresh your understanding of `group_by`
+. refresh your understanding of `group_by`
+. modify the playbook to create groups based on the Linux distribution of the host
+. create two tasks that printout out a message specific to the group
+
+TIP: refresh yourself with the `setup` module
+
+You have completed the lab when you see something similar to this:
+
+----
+PLAY [Create Ad Hoc Groups] ****************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [charlie]
+ok: [delta]
+ok: [alpha]
+ok: [bravo]
+ok: [echo]
+
+TASK [Create groups based on distribution] **************************************************************************************************
+ok: [alpha]
+ok: [bravo]
+ok: [charlie]
+ok: [delta]
+ok: [echo]
+
+PLAY [Print an Ubuntu group message] *******************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [alpha]
+ok: [bravo]
+ok: [echo]
+
+TASK [Print Message] ***********************************************************************************************************************
+ok: [alpha] => {
+    "msg": "Ubuntu rules!"
+}
+ok: [bravo] => {
+    "msg": "Ubuntu rules!"
+}
+ok: [echo] => {
+    "msg": "Ubuntu rules!"
+}
+
+PLAY [Print an Amazon group message] *******************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [charlie]
+ok: [delta]
+
+TASK [Print Message] ***********************************************************************************************************************
+ok: [charlie] => {
+    "msg": "Amazon rules!"
+}
+ok: [delta] => {
+    "msg": "Amazon rules!"
+}
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=4    changed=0    unreachable=0    failed=0
+bravo                      : ok=4    changed=0    unreachable=0    failed=0
+charlie                    : ok=4    changed=0    unreachable=0    failed=0
+delta                      : ok=4    changed=0    unreachable=0    failed=0
+echo                       : ok=4    changed=0    unreachable=0    failed=0
+----
+
+
 
 == Lab 00: User management
 == Lab 00: RabbitMQ
