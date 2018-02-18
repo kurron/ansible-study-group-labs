@@ -1360,6 +1360,145 @@ PLAY RECAP *********************************************************************
 localhost                  : ok=2    changed=0    unreachable=0    failed=0
 ----
 
+== Lab 27: Looping (file globbing)
+. copy `lab-26.yml` to `lab-27.yml`
+. create a play that copies all local playbooks to the `/tmp` directory of all target machines
+. verify the files have been properly copied to all machines
+. add or modify a local playbook and run the play again.  What happens?
+. modify the task to use different permissions and run the play again.  What happens?
+
+TIP: add a debugging task the verifies the copy worked correctly
+
+TIP: use an ad-hoc command to delete the files, resetting the test environment
+
+TIP: understand http://linux-training.be/funhtml/ch17.html[File Globbing] prior to starting the lab
+
+You have completed the lab when you see something similar to this:
+
+----
+PLAY [Looping Showcase] ********************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [delta]
+ok: [charlie]
+ok: [bravo]
+ok: [alpha]
+ok: [echo]
+
+TASK [Copy Playbooks] **********************************************************************************************************************
+changed: [bravo] => (item=/home/ubuntu/lab-25.yml)
+changed: [echo] => (item=/home/ubuntu/lab-25.yml)
+changed: [alpha] => (item=/home/ubuntu/lab-25.yml)
+changed: [charlie] => (item=/home/ubuntu/lab-25.yml)
+changed: [delta] => (item=/home/ubuntu/lab-25.yml)
+changed: [alpha] => (item=/home/ubuntu/lab-11.yml)
+changed: [bravo] => (item=/home/ubuntu/lab-11.yml)
+changed: [echo] => (item=/home/ubuntu/lab-11.yml)
+changed: [charlie] => (item=/home/ubuntu/lab-11.yml)
+changed: [delta] => (item=/home/ubuntu/lab-11.yml)
+changed: [bravo] => (item=/home/ubuntu/lab-22.yml)
+changed: [alpha] => (item=/home/ubuntu/lab-22.yml)
+changed: [echo] => (item=/home/ubuntu/lab-22.yml)
+changed: [delta] => (item=/home/ubuntu/lab-22.yml)
+changed: [charlie] => (item=/home/ubuntu/lab-22.yml)
+changed: [bravo] => (item=/home/ubuntu/lab-20.yml)
+changed: [alpha] => (item=/home/ubuntu/lab-20.yml)
+changed: [echo] => (item=/home/ubuntu/lab-20.yml)
+changed: [charlie] => (item=/home/ubuntu/lab-20.yml)
+changed: [delta] => (item=/home/ubuntu/lab-20.yml)
+changed: [bravo] => (item=/home/ubuntu/lab-26.yml)
+changed: [alpha] => (item=/home/ubuntu/lab-26.yml)
+changed: [echo] => (item=/home/ubuntu/lab-26.yml)
+changed: [bravo] => (item=/home/ubuntu/lab-15.yml)
+changed: [delta] => (item=/home/ubuntu/lab-26.yml)
+changed: [charlie] => (item=/home/ubuntu/lab-26.yml)
+changed: [alpha] => (item=/home/ubuntu/lab-15.yml)
+changed: [echo] => (item=/home/ubuntu/lab-15.yml)
+changed: [bravo] => (item=/home/ubuntu/lab-18.yml)
+changed: [alpha] => (item=/home/ubuntu/lab-18.yml)
+changed: [echo] => (item=/home/ubuntu/lab-18.yml)
+changed: [charlie] => (item=/home/ubuntu/lab-15.yml)
+changed: [delta] => (item=/home/ubuntu/lab-15.yml)
+changed: [bravo] => (item=/home/ubuntu/lab-21.yml)
+changed: [alpha] => (item=/home/ubuntu/lab-21.yml)
+changed: [echo] => (item=/home/ubuntu/lab-21.yml)
+changed: [bravo] => (item=/home/ubuntu/lab-19.yml)
+changed: [delta] => (item=/home/ubuntu/lab-18.yml)
+changed: [charlie] => (item=/home/ubuntu/lab-18.yml)
+changed: [alpha] => (item=/home/ubuntu/lab-19.yml)
+changed: [echo] => (item=/home/ubuntu/lab-19.yml)
+changed: [bravo] => (item=/home/ubuntu/lab-13.yml)
+changed: [alpha] => (item=/home/ubuntu/lab-13.yml)
+changed: [delta] => (item=/home/ubuntu/lab-21.yml)
+changed: [charlie] => (item=/home/ubuntu/lab-21.yml)
+changed: [echo] => (item=/home/ubuntu/lab-13.yml)
+changed: [bravo] => (item=/home/ubuntu/lab-17-extra-vars.yml)
+changed: [alpha] => (item=/home/ubuntu/lab-17-extra-vars.yml)
+changed: [echo] => (item=/home/ubuntu/lab-17-extra-vars.yml)
+changed: [bravo] => (item=/home/ubuntu/lab-27.yml)
+changed: [delta] => (item=/home/ubuntu/lab-19.yml)
+changed: [charlie] => (item=/home/ubuntu/lab-19.yml)
+changed: [alpha] => (item=/home/ubuntu/lab-27.yml)
+changed: [echo] => (item=/home/ubuntu/lab-27.yml)
+changed: [bravo] => (item=/home/ubuntu/lab-24.yml)
+changed: [alpha] => (item=/home/ubuntu/lab-24.yml)
+changed: [delta] => (item=/home/ubuntu/lab-13.yml)
+changed: [charlie] => (item=/home/ubuntu/lab-13.yml)
+changed: [echo] => (item=/home/ubuntu/lab-24.yml)
+changed: [bravo] => (item=/home/ubuntu/lab-23.yml)
+changed: [alpha] => (item=/home/ubuntu/lab-23.yml)
+changed: [echo] => (item=/home/ubuntu/lab-23.yml)
+changed: [delta] => (item=/home/ubuntu/lab-17-extra-vars.yml)
+changed: [bravo] => (item=/home/ubuntu/lab-16.yml)
+changed: [charlie] => (item=/home/ubuntu/lab-17-extra-vars.yml)
+changed: [alpha] => (item=/home/ubuntu/lab-16.yml)
+changed: [echo] => (item=/home/ubuntu/lab-16.yml)
+changed: [bravo] => (item=/home/ubuntu/lab-17.yml)
+changed: [delta] => (item=/home/ubuntu/lab-27.yml)
+changed: [charlie] => (item=/home/ubuntu/lab-27.yml)
+changed: [alpha] => (item=/home/ubuntu/lab-17.yml)
+changed: [echo] => (item=/home/ubuntu/lab-17.yml)
+changed: [bravo] => (item=/home/ubuntu/lab-14.yml)
+changed: [alpha] => (item=/home/ubuntu/lab-14.yml)
+changed: [charlie] => (item=/home/ubuntu/lab-24.yml)
+changed: [delta] => (item=/home/ubuntu/lab-24.yml)
+changed: [bravo] => (item=/home/ubuntu/lab-12.yml)
+changed: [echo] => (item=/home/ubuntu/lab-14.yml)
+changed: [alpha] => (item=/home/ubuntu/lab-12.yml)
+changed: [charlie] => (item=/home/ubuntu/lab-23.yml)
+changed: [delta] => (item=/home/ubuntu/lab-23.yml)
+changed: [echo] => (item=/home/ubuntu/lab-12.yml)
+changed: [charlie] => (item=/home/ubuntu/lab-16.yml)
+changed: [delta] => (item=/home/ubuntu/lab-16.yml)
+changed: [charlie] => (item=/home/ubuntu/lab-17.yml)
+changed: [delta] => (item=/home/ubuntu/lab-17.yml)
+changed: [delta] => (item=/home/ubuntu/lab-14.yml)
+changed: [charlie] => (item=/home/ubuntu/lab-14.yml)
+changed: [delta] => (item=/home/ubuntu/lab-12.yml)
+changed: [charlie] => (item=/home/ubuntu/lab-12.yml)
+
+TASK [Verify result] ***********************************************************************************************************************
+changed: [bravo]
+changed: [echo]
+changed: [alpha]
+changed: [charlie]
+changed: [delta]
+
+TASK [Print results] ***********************************************************************************************************************
+skipping: [alpha]
+skipping: [bravo]
+skipping: [charlie]
+skipping: [delta]
+skipping: [echo]
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=3    changed=2    unreachable=0    failed=0
+bravo                      : ok=3    changed=2    unreachable=0    failed=0
+charlie                    : ok=3    changed=2    unreachable=0    failed=0
+delta                      : ok=3    changed=2    unreachable=0    failed=0
+echo                       : ok=3    changed=2    unreachable=0    failed=0
+----
+
 == Lab 00: User management
 == Lab 00: RabbitMQ
 == Lab 00: MongoDB
