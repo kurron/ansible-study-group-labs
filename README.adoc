@@ -1499,6 +1499,97 @@ delta                      : ok=3    changed=2    unreachable=0    failed=0
 echo                       : ok=3    changed=2    unreachable=0    failed=0
 ----
 
+== Lab 28: Blocks (task grouping)
+. copy `lab-27.yml` to `lab-28.yml`
+. create a play that adds an empty file in `/usr/local/bin` named either `lab-28-ubuntu` or `lab-28-amazon` depending on distribution
+. make the file owned by the Ansible user and group, giving everyone the ability to read and execute the file
+. install the `tree` package
+. create a task to ensure that the files have been properly created
+. create a task to ensure that `tree` has been properly installed
+. make sure that the verification tasks **run as the normal user**
+
+TIP: Ubuntu and Amazon Linux use different package managers
+
+TIP: use an ad-hoc command to reset the `/usr/local/bin` area while debugging
+
+The lab is complete when you see something similar to this, and the verification checks have been run.
+
+----
+./lab-28.yml
+
+PLAY [Block Showcase] **********************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [delta]
+ok: [charlie]
+ok: [bravo]
+ok: [alpha]
+ok: [echo]
+
+TASK [Copy file to a restricted folder] ****************************************************************************************************
+skipping: [charlie]
+skipping: [delta]
+changed: [bravo]
+changed: [echo]
+changed: [alpha]
+
+TASK [apt] *********************************************************************************************************************************
+skipping: [charlie]
+skipping: [delta]
+ok: [bravo]
+ok: [echo]
+ok: [alpha]
+
+TASK [Copy file to a restricted folder] ****************************************************************************************************
+skipping: [alpha]
+skipping: [bravo]
+skipping: [echo]
+changed: [delta]
+changed: [charlie]
+
+TASK [yum] *********************************************************************************************************************************
+skipping: [alpha]
+skipping: [bravo]
+skipping: [echo]
+ok: [delta]
+ok: [charlie]
+
+TASK [Verify touch] ************************************************************************************************************************
+changed: [bravo]
+changed: [echo]
+changed: [alpha]
+changed: [delta]
+changed: [charlie]
+
+TASK [Print touch results] *****************************************************************************************************************
+skipping: [alpha]
+skipping: [bravo]
+skipping: [charlie]
+skipping: [delta]
+skipping: [echo]
+
+TASK [Verify tree] *************************************************************************************************************************
+changed: [alpha]
+changed: [bravo]
+changed: [echo]
+changed: [charlie]
+changed: [delta]
+
+TASK [Print tree results] ******************************************************************************************************************
+skipping: [alpha]
+skipping: [bravo]
+skipping: [charlie]
+skipping: [delta]
+skipping: [echo]
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=5    changed=3    unreachable=0    failed=0
+bravo                      : ok=5    changed=3    unreachable=0    failed=0
+charlie                    : ok=5    changed=3    unreachable=0    failed=0
+delta                      : ok=5    changed=3    unreachable=0    failed=0
+echo                       : ok=5    changed=3    unreachable=0    failed=0
+----
+
 == Lab 00: User management
 == Lab 00: RabbitMQ
 == Lab 00: MongoDB

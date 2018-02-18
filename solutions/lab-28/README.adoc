@@ -1,0 +1,187 @@
+:toc:
+:toc-placement!:
+
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
+:warning-caption: :warning:
+:caution-caption: :fire:
+
+= Lab 28: Blocks (task grouping)
+Ron Kurr <rkurr@jvmguy.com>
+
+
+toc::[]
+
+== Overview
+There are many ways to solve the problems presented in the lab.  These solutions are known to work, but you may have found alternative solutions.
+
+IMPORTANT: Only refer to these solutions if you are stuck and are failing to make progress.  The best way to learn is to find the information yourself and apply it.
+
+== Make a copy of lab-27.yml
+----
+cp lab-27.yml lab-28.yml
+----
+
+== Playbook
+.lab-28.yml
+----
+#!/usr/bin/env ansible-playbook
+---
+- name: Block Showcase
+  hosts: all
+  become: false
+  tasks:
+      - block:
+        - name: Copy file to a restricted folder
+          file:
+              owner: "{{ ansible_user_id }}"
+              group: "{{ ansible_user_gid }}"
+              mode: 0555
+              path: "/usr/local/bin/lab-28-ubuntu"
+              state: touch
+        - name:
+          apt:
+              install_recommends: no
+              name: tree
+              state: latest
+        when: ansible_distribution == "Ubuntu"
+        become: yes
+
+      - block:
+        - name: Copy file to a restricted folder
+          file:
+              owner: "{{ ansible_user_id }}"
+              group: "{{ ansible_user_gid }}"
+              mode: 0555
+              path: "/usr/local/bin/lab-28-amazon"
+              state: touch
+        - name:
+          yum:
+              name: tree
+              state: latest
+        when: ansible_distribution == "Amazon"
+        become: yes
+
+      - name: Verify touch
+        shell: "ls -l /usr/local/bin/lab-28-*"
+        register: copied
+      - name: Print touch results
+        debug:
+            msg: '{{ copied.stdout }}'
+            verbosity: 1
+
+      - name: Verify tree
+        shell: "tree --version"
+        register: tree
+      - name: Print tree results
+        debug:
+            msg: '{{ tree.stdout }}'
+            verbosity: 1
+----
+
+== Example Verbose Output
+----
+./lab-28.yml --verbose
+Using /home/ubuntu/ansible.cfg as config file
+
+PLAY [Block Showcase] **********************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [charlie]
+ok: [delta]
+ok: [alpha]
+ok: [echo]
+ok: [bravo]
+
+TASK [Copy file to a restricted folder] ****************************************************************************************************
+skipping: [charlie] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [delta] => {"changed": false, "skip_reason": "Conditional result was False"}
+changed: [bravo] => {"changed": true, "dest": "/usr/local/bin/lab-28-ubuntu", "gid": 1000, "group": "ubuntu", "mode": "0555", "owner": "ubuntu", "size": 0, "state": "file", "uid": 1000}
+changed: [alpha] => {"changed": true, "dest": "/usr/local/bin/lab-28-ubuntu", "gid": 1000, "group": "ubuntu", "mode": "0555", "owner": "ubuntu", "size": 0, "state": "file", "uid": 1000}
+changed: [echo] => {"changed": true, "dest": "/usr/local/bin/lab-28-ubuntu", "gid": 1000, "group": "ubuntu", "mode": "0555", "owner": "ubuntu", "size": 0, "state": "file", "uid": 1000}
+
+TASK [apt] *********************************************************************************************************************************
+skipping: [charlie] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [delta] => {"changed": false, "skip_reason": "Conditional result was False"}
+ok: [bravo] => {"cache_update_time": 1518931256, "cache_updated": false, "changed": false}
+ok: [alpha] => {"cache_update_time": 1518926314, "cache_updated": false, "changed": false}
+ok: [echo] => {"cache_update_time": 1518927327, "cache_updated": false, "changed": false}
+
+TASK [Copy file to a restricted folder] ****************************************************************************************************
+skipping: [alpha] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [bravo] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [echo] => {"changed": false, "skip_reason": "Conditional result was False"}
+changed: [charlie] => {"changed": true, "dest": "/usr/local/bin/lab-28-amazon", "gid": 1000, "group": "ec2-user", "mode": "0555", "owner": "ec2-user", "size": 0, "state": "file", "uid": 1000}
+changed: [delta] => {"changed": true, "dest": "/usr/local/bin/lab-28-amazon", "gid": 1000, "group": "ec2-user", "mode": "0555", "owner": "ec2-user", "size": 0, "state": "file", "uid": 1000}
+
+TASK [yum] *********************************************************************************************************************************
+skipping: [alpha] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [bravo] => {"changed": false, "skip_reason": "Conditional result was False"}
+skipping: [echo] => {"changed": false, "skip_reason": "Conditional result was False"}
+ok: [delta] => {"changed": false, "msg": "", "rc": 0, "results": ["All packages providing tree are up to date", ""]}
+ok: [charlie] => {"changed": false, "msg": "", "rc": 0, "results": ["All packages providing tree are up to date", ""]}
+
+TASK [Verify touch] ************************************************************************************************************************
+changed: [alpha] => {"changed": true, "cmd": "ls -l /usr/local/bin/lab-28-*", "delta": "0:00:00.002541", "end": "2018-02-18 17:00:22.950230", "rc": 0, "start": "2018-02-18 17:00:22.947689", "stderr": "", "stderr_lines": [], "stdout": "-r-xr-xr-x 1 ubuntu ubuntu 0 Feb 18 17:00 /usr/local/bin/lab-28-ubuntu", "stdout_lines": ["-r-xr-xr-x 1 ubuntu ubuntu 0 Feb 18 17:00 /usr/local/bin/lab-28-ubuntu"]}
+changed: [echo] => {"changed": true, "cmd": "ls -l /usr/local/bin/lab-28-*", "delta": "0:00:00.002618", "end": "2018-02-18 17:00:22.956813", "rc": 0, "start": "2018-02-18 17:00:22.954195", "stderr": "", "stderr_lines": [], "stdout": "-r-xr-xr-x 1 ubuntu ubuntu 0 Feb 18 17:00 /usr/local/bin/lab-28-ubuntu", "stdout_lines": ["-r-xr-xr-x 1 ubuntu ubuntu 0 Feb 18 17:00 /usr/local/bin/lab-28-ubuntu"]}
+changed: [bravo] => {"changed": true, "cmd": "ls -l /usr/local/bin/lab-28-*", "delta": "0:00:00.002764", "end": "2018-02-18 17:00:22.955968", "rc": 0, "start": "2018-02-18 17:00:22.953204", "stderr": "", "stderr_lines": [], "stdout": "-r-xr-xr-x 1 ubuntu ubuntu 0 Feb 18 17:00 /usr/local/bin/lab-28-ubuntu", "stdout_lines": ["-r-xr-xr-x 1 ubuntu ubuntu 0 Feb 18 17:00 /usr/local/bin/lab-28-ubuntu"]}
+changed: [charlie] => {"changed": true, "cmd": "ls -l /usr/local/bin/lab-28-*", "delta": "0:00:00.003123", "end": "2018-02-18 17:00:23.001822", "rc": 0, "start": "2018-02-18 17:00:22.998699", "stderr": "", "stderr_lines": [], "stdout": "-r-xr-xr-x 1 ec2-user ec2-user 0 Feb 18 17:00 /usr/local/bin/lab-28-amazon", "stdout_lines": ["-r-xr-xr-x 1 ec2-user ec2-user 0 Feb 18 17:00 /usr/local/bin/lab-28-amazon"]}
+changed: [delta] => {"changed": true, "cmd": "ls -l /usr/local/bin/lab-28-*", "delta": "0:00:00.003464", "end": "2018-02-18 17:00:23.004105", "rc": 0, "start": "2018-02-18 17:00:23.000641", "stderr": "", "stderr_lines": [], "stdout": "-r-xr-xr-x 1 ec2-user ec2-user 0 Feb 18 17:00 /usr/local/bin/lab-28-amazon", "stdout_lines": ["-r-xr-xr-x 1 ec2-user ec2-user 0 Feb 18 17:00 /usr/local/bin/lab-28-amazon"]}
+
+TASK [Print touch results] *****************************************************************************************************************
+ok: [alpha] => {
+    "msg": "-r-xr-xr-x 1 ubuntu ubuntu 0 Feb 18 17:00 /usr/local/bin/lab-28-ubuntu"
+}
+ok: [bravo] => {
+    "msg": "-r-xr-xr-x 1 ubuntu ubuntu 0 Feb 18 17:00 /usr/local/bin/lab-28-ubuntu"
+}
+ok: [charlie] => {
+    "msg": "-r-xr-xr-x 1 ec2-user ec2-user 0 Feb 18 17:00 /usr/local/bin/lab-28-amazon"
+}
+ok: [delta] => {
+    "msg": "-r-xr-xr-x 1 ec2-user ec2-user 0 Feb 18 17:00 /usr/local/bin/lab-28-amazon"
+}
+ok: [echo] => {
+    "msg": "-r-xr-xr-x 1 ubuntu ubuntu 0 Feb 18 17:00 /usr/local/bin/lab-28-ubuntu"
+}
+
+TASK [Verify tree] *************************************************************************************************************************
+changed: [alpha] => {"changed": true, "cmd": "tree --version", "delta": "0:00:00.001904", "end": "2018-02-18 17:00:23.477430", "rc": 0, "start": "2018-02-18 17:00:23.475526", "stderr": "", "stderr_lines": [], "stdout": "tree v1.7.0 (c) 1996 - 2014 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro ", "stdout_lines": ["tree v1.7.0 (c) 1996 - 2014 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro "]}
+changed: [bravo] => {"changed": true, "cmd": "tree --version", "delta": "0:00:00.001870", "end": "2018-02-18 17:00:23.506737", "rc": 0, "start": "2018-02-18 17:00:23.504867", "stderr": "", "stderr_lines": [], "stdout": "tree v1.7.0 (c) 1996 - 2014 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro ", "stdout_lines": ["tree v1.7.0 (c) 1996 - 2014 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro "]}
+changed: [echo] => {"changed": true, "cmd": "tree --version", "delta": "0:00:00.002109", "end": "2018-02-18 17:00:23.571729", "rc": 0, "start": "2018-02-18 17:00:23.569620", "stderr": "", "stderr_lines": [], "stdout": "tree v1.7.0 (c) 1996 - 2014 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro ", "stdout_lines": ["tree v1.7.0 (c) 1996 - 2014 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro "]}
+changed: [charlie] => {"changed": true, "cmd": "tree --version", "delta": "0:00:00.002622", "end": "2018-02-18 17:00:23.586810", "rc": 0, "start": "2018-02-18 17:00:23.584188", "stderr": "", "stderr_lines": [], "stdout": "tree v1.6.0 (c) 1996 - 2011 by Steve Baker, Thomas Moore, Francesc Rocher, Kyosuke Tokoro ", "stdout_lines": ["tree v1.6.0 (c) 1996 - 2011 by Steve Baker, Thomas Moore, Francesc Rocher, Kyosuke Tokoro "]}
+changed: [delta] => {"changed": true, "cmd": "tree --version", "delta": "0:00:00.002596", "end": "2018-02-18 17:00:23.600010", "rc": 0, "start": "2018-02-18 17:00:23.597414", "stderr": "", "stderr_lines": [], "stdout": "tree v1.6.0 (c) 1996 - 2011 by Steve Baker, Thomas Moore, Francesc Rocher, Kyosuke Tokoro ", "stdout_lines": ["tree v1.6.0 (c) 1996 - 2011 by Steve Baker, Thomas Moore, Francesc Rocher, Kyosuke Tokoro "]}
+
+TASK [Print tree results] ******************************************************************************************************************
+ok: [alpha] => {
+    "msg": "tree v1.7.0 (c) 1996 - 2014 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro "
+}
+ok: [bravo] => {
+    "msg": "tree v1.7.0 (c) 1996 - 2014 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro "
+}
+ok: [charlie] => {
+    "msg": "tree v1.6.0 (c) 1996 - 2011 by Steve Baker, Thomas Moore, Francesc Rocher, Kyosuke Tokoro "
+}
+ok: [delta] => {
+    "msg": "tree v1.6.0 (c) 1996 - 2011 by Steve Baker, Thomas Moore, Francesc Rocher, Kyosuke Tokoro "
+}
+ok: [echo] => {
+    "msg": "tree v1.7.0 (c) 1996 - 2014 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro "
+}
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=7    changed=3    unreachable=0    failed=0
+bravo                      : ok=7    changed=3    unreachable=0    failed=0
+charlie                    : ok=7    changed=3    unreachable=0    failed=0
+delta                      : ok=7    changed=3    unreachable=0    failed=0
+echo                       : ok=7    changed=3    unreachable=0    failed=0 
+----
+
+== Ad-Hoc Reset Command
+----
+ansible all --become --module-name raw --args 'rm -f /usr/local/bin/lab-28-*'
+----
+
+== License and Credits
+This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].
