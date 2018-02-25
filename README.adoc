@@ -1594,6 +1594,8 @@ echo                       : ok=5    changed=3    unreachable=0    failed=0
 . copy `lab-28.yml` to `lab-29.yml`
 . create a playbook that copies `license.txt` in the `/tmp` folder of all hosts
 . the license file should read `host <hostname> was licensed to use the software on <today's date>`
+. make the file permissions to read-only for everyone
+. make the file owned by the Ansible user and group
 . verify that the license file has been copied correctly to all machines
 
 TIP: have the playbook run the verification step for you
