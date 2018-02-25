@@ -1,0 +1,62 @@
+:toc:
+:toc-placement!:
+
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
+:warning-caption: :warning:
+:caution-caption: :fire:
+
+= Lab 29: Templating Files
+Ron Kurr <rkurr@jvmguy.com>
+
+
+toc::[]
+
+== Overview
+There are many ways to solve the problems presented in the lab.  These solutions are known to work, but you may have found alternative solutions.
+
+IMPORTANT: Only refer to these solutions if you are stuck and are failing to make progress.  The best way to learn is to find the information yourself and apply it.
+
+== Make a copy of lab-28.yml
+----
+cp lab-28.yml lab-29.yml
+----
+
+== Playbook
+.lab-29.yml
+----
+#!/usr/bin/env ansible-playbook
+---
+- name: Templating Showcase
+  hosts: all
+  become: false
+  tasks:
+      - name: Obtain date
+        shell: "date"
+        register: todays_date
+      - name: Copy license file
+        template:
+            backup: yes
+            dest: "/tmp/license.txt"
+            group: "{{ ansible_user_gid }}"
+            mode: 0444
+            owner: "{{ ansible_user_id }}"
+            src: "templates/license.txt.j2"
+      - name: Verify result
+        shell: "cat /tmp/license.txt"
+        register: copied
+      - name: Print results
+        debug:
+            msg: '{{ copied.stdout }}'
+            verbosity: 1
+----
+
+== Template File
+.templates/license.txt.j2
+----
+Host {{ ansible_hostname }} was licensed to use the software on {{ todays_date.stdout }}.
+----
+
+== License and Credits
+This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].
