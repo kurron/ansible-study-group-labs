@@ -1809,6 +1809,138 @@ delta                      : ok=4    changed=2    unreachable=0    failed=0
 echo                       : ok=4    changed=2    unreachable=0    failed=0
 ----
 
+== Lab 31: Handlers (basic)
+Sometimes we need to restart services or reboot servers but only when something changes, such as a configuration file.  This lab will simulate a change to a configuration file that requires a reboot of the machine.
+
+. copy `lab-30.yml` to `lab-31.yml`
+. create a playbook that copies a file to `/tmp/reboot.txt`
+. simulate a reboot by printing a message that says "Rebooting <host name>"
+. the reboot should only take place when there is a change to the configuration file
+. run the playbook should result in the file copy and the reboot message appearing
+. running the playbook a second time should result in no reboot message
+. edit the configuration file somehow (the key is that the file has changed)
+. running the playbook a third time should result in a reboot message
+
+CAUTION: Ansible has improved the handler mechanism.  When researching, we are using the legacy mechanism for this lab.
+
+First Run Example:
+----
+./lab-31.yml
+
+PLAY [Handlers (basic)] ********************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [charlie]
+ok: [delta]
+ok: [alpha]
+ok: [bravo]
+ok: [echo]
+
+TASK [Copy configuration file] *******************************************************************************************************************
+changed: [bravo]
+changed: [alpha]
+changed: [echo]
+changed: [charlie]
+changed: [delta]
+
+RUNNING HANDLER [Reboot Instance] **********************************************************************************************************
+ok: [bravo] => {
+    "msg": "Rebooting ip-172-31-43-113"
+}
+ok: [alpha] => {
+    "msg": "Rebooting ip-172-31-35-226"
+}
+ok: [echo] => {
+    "msg": "Rebooting ip-172-31-43-102"
+}
+ok: [charlie] => {
+    "msg": "Rebooting ip-172-31-36-232"
+}
+ok: [delta] => {
+    "msg": "Rebooting ip-172-31-36-222"
+}
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=3    changed=1    unreachable=0    failed=0
+bravo                      : ok=3    changed=1    unreachable=0    failed=0
+charlie                    : ok=3    changed=1    unreachable=0    failed=0
+delta                      : ok=3    changed=1    unreachable=0    failed=0
+echo                       : ok=3    changed=1    unreachable=0    failed=0
+----
+
+Second Run Example:
+----
+./lab-31.yml
+
+PLAY [Handlers (basic)] ********************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [bravo]
+ok: [alpha]
+ok: [delta]
+ok: [charlie]
+ok: [echo]
+
+TASK [Copy configuration file] *************************************************************************************************************
+ok: [alpha]
+ok: [bravo]
+ok: [echo]
+ok: [charlie]
+ok: [delta]
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=2    changed=0    unreachable=0    failed=0
+bravo                      : ok=2    changed=0    unreachable=0    failed=0
+charlie                    : ok=2    changed=0    unreachable=0    failed=0
+delta                      : ok=2    changed=0    unreachable=0    failed=0
+echo                       : ok=2    changed=0    unreachable=0    failed=0
+----
+
+Third Run Example:
+----
+./lab-31.yml
+
+PLAY [Handlers (basic)] ********************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [charlie]
+ok: [delta]
+ok: [bravo]
+ok: [alpha]
+ok: [echo]
+
+TASK [Copy configuration file] *************************************************************************************************************
+changed: [alpha]
+changed: [bravo]
+changed: [echo]
+changed: [charlie]
+changed: [delta]
+
+RUNNING HANDLER [Reboot Instance] **********************************************************************************************************
+ok: [alpha] => {
+    "msg": "Rebooting ip-172-31-35-226"
+}
+ok: [bravo] => {
+    "msg": "Rebooting ip-172-31-43-113"
+}
+ok: [echo] => {
+    "msg": "Rebooting ip-172-31-43-102"
+}
+ok: [charlie] => {
+    "msg": "Rebooting ip-172-31-36-232"
+}
+ok: [delta] => {
+    "msg": "Rebooting ip-172-31-36-222"
+}
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=3    changed=1    unreachable=0    failed=0
+bravo                      : ok=3    changed=1    unreachable=0    failed=0
+charlie                    : ok=3    changed=1    unreachable=0    failed=0
+delta                      : ok=3    changed=1    unreachable=0    failed=0
+echo                       : ok=3    changed=1    unreachable=0    failed=0
+----
+
 == Lab 00: User management
 == Lab 00: RabbitMQ
 == Lab 00: MongoDB
@@ -1843,7 +1975,6 @@ echo                       : ok=4    changed=2    unreachable=0    failed=0
 == Lab 00: Share Roles
 == Lab 00: Cronjob
 == Lab 00: Conditional Section In a Jinja2 Template
-== Lab 00: Handlers
 == Lab 00: Jinja2 For Loop
 == Lab 00: Templated Configuration File
 == Lab 00: Complex Arguments Using with_items
@@ -1857,8 +1988,6 @@ echo                       : ok=4    changed=2    unreachable=0    failed=0
 == Lab 00: List tasks in a playbook
 == Lab 00: Using Host Vars To Set Up /etc/hosts file
 == Lab 00: Using Custom Fact Files
-== Lab 00: Dump Variable Values
-== Lab 00: Register Variable From Module Output (use debug to printout returned keys)
 == Lab 00: Create Dynamic Inventory After EC2 Instance Creation
 == Lab 00: Copying Files via Playbook
 == Lab 00: Conditionally Copying Files Based On Distribution

@@ -1,0 +1,58 @@
+:toc:
+:toc-placement!:
+
+:note-caption: :information_source:
+:tip-caption: :bulb:
+:important-caption: :heavy_exclamation_mark:
+:warning-caption: :warning:
+:caution-caption: :fire:
+
+= Lab 31: Handlers (basic)
+Ron Kurr <rkurr@jvmguy.com>
+
+
+toc::[]
+
+== Overview
+There are many ways to solve the problems presented in the lab.  These solutions are known to work, but you may have found alternative solutions.
+
+IMPORTANT: Only refer to these solutions if you are stuck and are failing to make progress.  The best way to learn is to find the information yourself and apply it.
+
+== Make a copy of lab-30.yml
+----
+cp lab-30.yml lab-31.yml
+----
+
+== Playbook
+.lab-31.yml
+----
+#!/usr/bin/env ansible-playbook
+---
+- name: Handlers (basic)
+  hosts: all
+  become: false
+  tasks:
+      - name: Copy configuration file
+        template:
+            backup: yes
+            dest: "/tmp/reboot.txt"
+            group: "{{ ansible_user_gid }}"
+            mode: 0444
+            owner: "{{ ansible_user_id }}"
+            src: "templates/reboot.txt.j2"
+        notify: Reboot Instance
+  handlers:
+      - name: Reboot Instance
+        debug:
+            msg: 'Rebooting {{ ansible_hostname }}'
+            verbosity: 0
+----
+
+== Template File
+.templates/reboot.txt.j2
+----
+Simulated configuration for {{ ansible_hostname }}
+----
+
+== License and Credits
+This project is licensed under the https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode[Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License].
