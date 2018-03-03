@@ -1685,6 +1685,130 @@ delta                      : ok=7    changed=4    unreachable=0    failed=0
 echo                       : ok=7    changed=4    unreachable=0    failed=0
 ----
 
+== Lab 30: Default Template Values
+. copy `lab-29.yml` to `lab-30.yml`
+. create a playbook that copies `defaulted.txt` in the `/tmp` folder of all hosts
+. the license file should read `The specified color is <some color>.`
+. craft the template file so that the `color` variable is used to specify the color
+. ensure that the template will use a default value of `white` if the `color` variable is not specified
+. make the file permissions to read-only for everyone
+. make the file owned by the Ansible user and group
+. verify that the license file has been copied correctly to all machines
+. run the playbook **without specifying the color**, the color used should be white
+. run the playbook *specifying the color, the color used should be the value specified on the command-line
+
+WARNING: the technique used in this lab is **not** in the videos.
+
+TIP: read the http://docs.ansible.com/ansible/latest/playbooks_filters.html[Filters] section of the Ansible manual
+
+TIP: have the playbook verify the results
+
+Example run when the color is not specified:
+----
+./lab-30.yml --verbose
+Using /home/ubuntu/ansible.cfg as config file
+
+PLAY [Jinja Filtering Showcase] ************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [charlie]
+ok: [delta]
+ok: [alpha]
+ok: [bravo]
+ok: [echo]
+
+TASK [Copy license file] *******************************************************************************************************************
+changed: [bravo] => {"backup_file": "/tmp/defaulted.txt.20847.2018-03-03@16:15:37~", "changed": true, "checksum": "2237a1608cd12c90abbbfe008e96c8cb256e7eb2", "dest": "/tmp/defaulted.txt", "gid": 1000, "group": "ubuntu", "md5sum": "c463c2b9fd46d467d2b78d330c71970c", "mode": "0444", "owner": "ubuntu", "size": 30, "src": "/home/ubuntu/.ansible/tmp/ansible-tmp-1520093737.01-33689784410494/source", "state": "file", "uid": 1000}
+changed: [alpha] => {"backup_file": "/tmp/defaulted.txt.21714.2018-03-03@16:15:37~", "changed": true, "checksum": "2237a1608cd12c90abbbfe008e96c8cb256e7eb2", "dest": "/tmp/defaulted.txt", "gid": 1000, "group": "ubuntu", "md5sum": "c463c2b9fd46d467d2b78d330c71970c", "mode": "0444", "owner": "ubuntu", "size": 30, "src": "/home/ubuntu/.ansible/tmp/ansible-tmp-1520093736.97-40129610671255/source", "state": "file", "uid": 1000}
+changed: [echo] => {"backup_file": "/tmp/defaulted.txt.18627.2018-03-03@16:15:37~", "changed": true, "checksum": "2237a1608cd12c90abbbfe008e96c8cb256e7eb2", "dest": "/tmp/defaulted.txt", "gid": 1000, "group": "ubuntu", "md5sum": "c463c2b9fd46d467d2b78d330c71970c", "mode": "0444", "owner": "ubuntu", "size": 30, "src": "/home/ubuntu/.ansible/tmp/ansible-tmp-1520093737.11-178195469238440/source", "state": "file", "uid": 1000}
+changed: [charlie] => {"backup_file": "/tmp/defaulted.txt.21073.2018-03-03@16:15:37~", "changed": true, "checksum": "2237a1608cd12c90abbbfe008e96c8cb256e7eb2", "dest": "/tmp/defaulted.txt", "gid": 1000, "group": "ec2-user", "md5sum": "c463c2b9fd46d467d2b78d330c71970c", "mode": "0444", "owner": "ec2-user", "size": 30, "src": "/home/ec2-user/.ansible/tmp/ansible-tmp-1520093737.04-68818984010210/source", "state": "file", "uid": 1000}
+changed: [delta] => {"backup_file": "/tmp/defaulted.txt.8791.2018-03-03@16:15:37~", "changed": true, "checksum": "2237a1608cd12c90abbbfe008e96c8cb256e7eb2", "dest": "/tmp/defaulted.txt", "gid": 1000, "group": "ec2-user", "md5sum": "c463c2b9fd46d467d2b78d330c71970c", "mode": "0444", "owner": "ec2-user", "size": 30, "src": "/home/ec2-user/.ansible/tmp/ansible-tmp-1520093737.09-70588364683845/source", "state": "file", "uid": 1000}
+
+TASK [Verify content] **********************************************************************************************************************
+changed: [alpha] => {"changed": true, "cmd": "cat /tmp/defaulted.txt", "delta": "0:00:00.001925", "end": "2018-03-03 16:15:38.369340", "rc": 0, "start": "2018-03-03 16:15:38.367415", "stderr": "", "stderr_lines": [], "stdout": "The specified color is white.", "stdout_lines": ["The specified color is white."]}
+changed: [echo] => {"changed": true, "cmd": "cat /tmp/defaulted.txt", "delta": "0:00:00.002081", "end": "2018-03-03 16:15:38.359119", "rc": 0, "start": "2018-03-03 16:15:38.357038", "stderr": "", "stderr_lines": [], "stdout": "The specified color is white.", "stdout_lines": ["The specified color is white."]}
+changed: [bravo] => {"changed": true, "cmd": "cat /tmp/defaulted.txt", "delta": "0:00:00.001994", "end": "2018-03-03 16:15:38.361982", "rc": 0, "start": "2018-03-03 16:15:38.359988", "stderr": "", "stderr_lines": [], "stdout": "The specified color is white.", "stdout_lines": ["The specified color is white."]}
+changed: [delta] => {"changed": true, "cmd": "cat /tmp/defaulted.txt", "delta": "0:00:00.002593", "end": "2018-03-03 16:15:38.385864", "rc": 0, "start": "2018-03-03 16:15:38.383271", "stderr": "", "stderr_lines": [], "stdout": "The specified color is white.", "stdout_lines": ["The specified color is white."]}
+changed: [charlie] => {"changed": true, "cmd": "cat /tmp/defaulted.txt", "delta": "0:00:00.002729", "end": "2018-03-03 16:15:38.387828", "rc": 0, "start": "2018-03-03 16:15:38.385099", "stderr": "", "stderr_lines": [], "stdout": "The specified color is white.", "stdout_lines": ["The specified color is white."]}
+
+TASK [Print content] ***********************************************************************************************************************
+ok: [alpha] => {
+    "msg": "The specified color is white."
+}
+ok: [bravo] => {
+    "msg": "The specified color is white."
+}
+ok: [charlie] => {
+    "msg": "The specified color is white."
+}
+ok: [delta] => {
+    "msg": "The specified color is white."
+}
+ok: [echo] => {
+    "msg": "The specified color is white."
+}
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=4    changed=2    unreachable=0    failed=0
+bravo                      : ok=4    changed=2    unreachable=0    failed=0
+charlie                    : ok=4    changed=2    unreachable=0    failed=0
+delta                      : ok=4    changed=2    unreachable=0    failed=0
+echo                       : ok=4    changed=2    unreachable=0    failed=0
+----
+
+Example run when the color  is specified:
+----
+./lab-30.yml --verbose --extra-vars color=purple
+Using /home/ubuntu/ansible.cfg as config file
+
+PLAY [Jinja Filtering Showcase] ************************************************************************************************************
+
+TASK [Gathering Facts] *********************************************************************************************************************
+ok: [delta]
+ok: [charlie]
+ok: [bravo]
+ok: [echo]
+ok: [alpha]
+
+TASK [Copy license file] *******************************************************************************************************************
+changed: [bravo] => {"backup_file": "/tmp/defaulted.txt.20985.2018-03-03@16:16:52~", "changed": true, "checksum": "7f1ba49f245a48bc7372783d1592075ab584a421", "dest": "/tmp/defaulted.txt", "gid": 1000, "group": "ubuntu", "md5sum": "c32b47473dd87d230c25fc661beea16c", "mode": "0444", "owner": "ubuntu", "size": 31, "src": "/home/ubuntu/.ansible/tmp/ansible-tmp-1520093812.19-117165746624761/source", "state": "file", "uid": 1000}
+changed: [echo] => {"backup_file": "/tmp/defaulted.txt.18765.2018-03-03@16:16:52~", "changed": true, "checksum": "7f1ba49f245a48bc7372783d1592075ab584a421", "dest": "/tmp/defaulted.txt", "gid": 1000, "group": "ubuntu", "md5sum": "c32b47473dd87d230c25fc661beea16c", "mode": "0444", "owner": "ubuntu", "size": 31, "src": "/home/ubuntu/.ansible/tmp/ansible-tmp-1520093812.28-33911040149259/source", "state": "file", "uid": 1000}
+changed: [alpha] => {"backup_file": "/tmp/defaulted.txt.21851.2018-03-03@16:16:52~", "changed": true, "checksum": "7f1ba49f245a48bc7372783d1592075ab584a421", "dest": "/tmp/defaulted.txt", "gid": 1000, "group": "ubuntu", "md5sum": "c32b47473dd87d230c25fc661beea16c", "mode": "0444", "owner": "ubuntu", "size": 31, "src": "/home/ubuntu/.ansible/tmp/ansible-tmp-1520093812.17-230395442679347/source", "state": "file", "uid": 1000}
+changed: [delta] => {"backup_file": "/tmp/defaulted.txt.9073.2018-03-03@16:16:52~", "changed": true, "checksum": "7f1ba49f245a48bc7372783d1592075ab584a421", "dest": "/tmp/defaulted.txt", "gid": 1000, "group": "ec2-user", "md5sum": "c32b47473dd87d230c25fc661beea16c", "mode": "0444", "owner": "ec2-user", "size": 31, "src": "/home/ec2-user/.ansible/tmp/ansible-tmp-1520093812.26-162271376830005/source", "state": "file", "uid": 1000}
+changed: [charlie] => {"backup_file": "/tmp/defaulted.txt.21348.2018-03-03@16:16:52~", "changed": true, "checksum": "7f1ba49f245a48bc7372783d1592075ab584a421", "dest": "/tmp/defaulted.txt", "gid": 1000, "group": "ec2-user", "md5sum": "c32b47473dd87d230c25fc661beea16c", "mode": "0444", "owner": "ec2-user", "size": 31, "src": "/home/ec2-user/.ansible/tmp/ansible-tmp-1520093812.23-82716404369596/source", "state": "file", "uid": 1000}
+
+TASK [Verify content] **********************************************************************************************************************
+changed: [alpha] => {"changed": true, "cmd": "cat /tmp/defaulted.txt", "delta": "0:00:00.001733", "end": "2018-03-03 16:16:53.520100", "rc": 0, "start": "2018-03-03 16:16:53.518367", "stderr": "", "stderr_lines": [], "stdout": "The specified color is purple.", "stdout_lines": ["The specified color is purple."]}
+changed: [bravo] => {"changed": true, "cmd": "cat /tmp/defaulted.txt", "delta": "0:00:00.001811", "end": "2018-03-03 16:16:53.515437", "rc": 0, "start": "2018-03-03 16:16:53.513626", "stderr": "", "stderr_lines": [], "stdout": "The specified color is purple.", "stdout_lines": ["The specified color is purple."]}
+changed: [echo] => {"changed": true, "cmd": "cat /tmp/defaulted.txt", "delta": "0:00:00.002081", "end": "2018-03-03 16:16:53.517982", "rc": 0, "start": "2018-03-03 16:16:53.515901", "stderr": "", "stderr_lines": [], "stdout": "The specified color is purple.", "stdout_lines": ["The specified color is purple."]}
+changed: [charlie] => {"changed": true, "cmd": "cat /tmp/defaulted.txt", "delta": "0:00:00.002721", "end": "2018-03-03 16:16:53.559127", "rc": 0, "start": "2018-03-03 16:16:53.556406", "stderr": "", "stderr_lines": [], "stdout": "The specified color is purple.", "stdout_lines": ["The specified color is purple."]}
+changed: [delta] => {"changed": true, "cmd": "cat /tmp/defaulted.txt", "delta": "0:00:00.002692", "end": "2018-03-03 16:16:53.558339", "rc": 0, "start": "2018-03-03 16:16:53.555647", "stderr": "", "stderr_lines": [], "stdout": "The specified color is purple.", "stdout_lines": ["The specified color is purple."]}
+
+TASK [Print content] ***********************************************************************************************************************
+ok: [alpha] => {
+    "msg": "The specified color is purple."
+}
+ok: [bravo] => {
+    "msg": "The specified color is purple."
+}
+ok: [charlie] => {
+    "msg": "The specified color is purple."
+}
+ok: [delta] => {
+    "msg": "The specified color is purple."
+}
+ok: [echo] => {
+    "msg": "The specified color is purple."
+}
+
+PLAY RECAP *********************************************************************************************************************************
+alpha                      : ok=4    changed=2    unreachable=0    failed=0
+bravo                      : ok=4    changed=2    unreachable=0    failed=0
+charlie                    : ok=4    changed=2    unreachable=0    failed=0
+delta                      : ok=4    changed=2    unreachable=0    failed=0
+echo                       : ok=4    changed=2    unreachable=0    failed=0
+----
+
 == Lab 00: User management
 == Lab 00: RabbitMQ
 == Lab 00: MongoDB
