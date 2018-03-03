@@ -1815,13 +1815,13 @@ Sometimes we need to restart services or reboot servers but only when something 
 . copy `lab-30.yml` to `lab-31.yml`
 . create a playbook that copies a file to `/tmp/reboot.txt`
 . simulate a reboot by printing a message that says "Rebooting <host name>"
-. the reboot should only take place when there is a change to the configuration file
-. run the playbook should result in the file copy and the reboot message appearing
-. running the playbook a second time should result in no reboot message
+. the reboot should **only take place when there is a change** to the configuration file
+. running the playbook should result in the file copy and the reboot message appearing
+. running the playbook a second time should result in **no reboot message**
 . edit the configuration file somehow (the key is that the file has changed)
 . running the playbook a third time should result in a reboot message
 
-CAUTION: Ansible has improved the handler mechanism.  When researching, we are using the legacy mechanism for this lab.
+CAUTION: Ansible has improved the handler mechanism.  We are using the legacy mechanism for this lab.
 
 First Run Example:
 ----
