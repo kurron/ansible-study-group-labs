@@ -43,12 +43,19 @@ cp lab-28.yml lab-29.yml
             mode: 0444
             owner: "{{ ansible_user_id }}"
             src: "templates/license.txt.j2"
-      - name: Verify result
+      - name: Verify content
         shell: "cat /tmp/license.txt"
-        register: copied
-      - name: Print results
+        register: content
+      - name: Verify permissions
+        shell: "ls -lh /tmp/license.txt"
+        register: permissions
+      - name: Print content
         debug:
-            msg: '{{ copied.stdout }}'
+            msg: '{{ content.stdout }}'
+            verbosity: 1
+      - name: Print permissions
+        debug:
+            msg: '{{ permissions.stdout }}'
             verbosity: 1
 ----
 

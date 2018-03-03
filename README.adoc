@@ -1610,55 +1610,79 @@ PLAY [Templating Showcase] *****************************************************
 
 TASK [Gathering Facts] *********************************************************************************************************************
 ok: [delta]
-ok: [alpha]
 ok: [charlie]
 ok: [bravo]
+ok: [alpha]
 ok: [echo]
 
 TASK [Obtain date] *************************************************************************************************************************
-changed: [alpha] => {"changed": true, "cmd": "date", "delta": "0:00:00.001834", "end": "2018-02-25 18:42:39.553318", "rc": 0, "start": "2018-02-25 18:42:39.551484", "stderr": "", "stderr_lines": [], "stdout": "Sun Feb 25 18:42:39 UTC 2018", "stdout_lines": ["Sun Feb 25 18:42:39 UTC 2018"]}
-changed: [bravo] => {"changed": true, "cmd": "date", "delta": "0:00:00.002019", "end": "2018-02-25 18:42:39.543750", "rc": 0, "start": "2018-02-25 18:42:39.541731", "stderr": "", "stderr_lines": [], "stdout": "Sun Feb 25 18:42:39 UTC 2018", "stdout_lines": ["Sun Feb 25 18:42:39 UTC 2018"]}
-changed: [echo] => {"changed": true, "cmd": "date", "delta": "0:00:00.002084", "end": "2018-02-25 18:42:39.550293", "rc": 0, "start": "2018-02-25 18:42:39.548209", "stderr": "", "stderr_lines": [], "stdout": "Sun Feb 25 18:42:39 UTC 2018", "stdout_lines": ["Sun Feb 25 18:42:39 UTC 2018"]}
-changed: [delta] => {"changed": true, "cmd": "date", "delta": "0:00:00.002565", "end": "2018-02-25 18:42:39.596998", "rc": 0, "start": "2018-02-25 18:42:39.594433", "stderr": "", "stderr_lines": [], "stdout": "Sun Feb 25 18:42:39 UTC 2018", "stdout_lines": ["Sun Feb 25 18:42:39 UTC 2018"]}
-changed: [charlie] => {"changed": true, "cmd": "date", "delta": "0:00:00.002516", "end": "2018-02-25 18:42:39.599546", "rc": 0, "start": "2018-02-25 18:42:39.597030", "stderr": "", "stderr_lines": [], "stdout": "Sun Feb 25 18:42:39 UTC 2018", "stdout_lines": ["Sun Feb 25 18:42:39 UTC 2018"]}
+changed: [alpha] => {"changed": true, "cmd": "date", "delta": "0:00:00.001751", "end": "2018-03-03 15:35:22.979557", "rc": 0, "start": "2018-03-03 15:35:22.977806", "stderr": "", "stderr_lines": [], "stdout": "Sat Mar  3 15:35:22 UTC 2018", "stdout_lines": ["Sat Mar  3 15:35:22 UTC 2018"]}
+changed: [echo] => {"changed": true, "cmd": "date", "delta": "0:00:00.001889", "end": "2018-03-03 15:35:22.989478", "rc": 0, "start": "2018-03-03 15:35:22.987589", "stderr": "", "stderr_lines": [], "stdout": "Sat Mar  3 15:35:22 UTC 2018", "stdout_lines": ["Sat Mar  3 15:35:22 UTC 2018"]}
+changed: [bravo] => {"changed": true, "cmd": "date", "delta": "0:00:00.001874", "end": "2018-03-03 15:35:22.984409", "rc": 0, "start": "2018-03-03 15:35:22.982535", "stderr": "", "stderr_lines": [], "stdout": "Sat Mar  3 15:35:22 UTC 2018", "stdout_lines": ["Sat Mar  3 15:35:22 UTC 2018"]}
+changed: [charlie] => {"changed": true, "cmd": "date", "delta": "0:00:00.002712", "end": "2018-03-03 15:35:23.021627", "rc": 0, "start": "2018-03-03 15:35:23.018915", "stderr": "", "stderr_lines": [], "stdout": "Sat Mar  3 15:35:23 UTC 2018", "stdout_lines": ["Sat Mar  3 15:35:23 UTC 2018"]}
+changed: [delta] => {"changed": true, "cmd": "date", "delta": "0:00:00.002733", "end": "2018-03-03 15:35:23.024689", "rc": 0, "start": "2018-03-03 15:35:23.021956", "stderr": "", "stderr_lines": [], "stdout": "Sat Mar  3 15:35:23 UTC 2018", "stdout_lines": ["Sat Mar  3 15:35:23 UTC 2018"]}
 
 TASK [Copy license file] *******************************************************************************************************************
-changed: [bravo] => {"backup_file": "/tmp/license.txt.7766.2018-02-25@18:42:40~", "changed": true, "checksum": "97847d12fe680521428e7e730ca547696140ce53", "dest": "/tmp/license.txt", "gid": 1000, "group": "ubuntu", "md5sum": "11342bbc2b16b065a2c33a1e5ed82935", "mode": "0444", "owner": "ubuntu", "size": 88, "src": "/home/ubuntu/.ansible/tmp/ansible-tmp-1519584159.73-176393645683219/source", "state": "file", "uid": 1000}
-changed: [alpha] => {"backup_file": "/tmp/license.txt.8714.2018-02-25@18:42:40~", "changed": true, "checksum": "240d5755b06b944630d896e7cbedf54d5377860c", "dest": "/tmp/license.txt", "gid": 1000, "group": "ubuntu", "md5sum": "2d8305a98caec1e23ecc7891ff56311c", "mode": "0444", "owner": "ubuntu", "size": 88, "src": "/home/ubuntu/.ansible/tmp/ansible-tmp-1519584159.71-277877170739215/source", "state": "file", "uid": 1000}
-changed: [echo] => {"backup_file": "/tmp/license.txt.5189.2018-02-25@18:42:40~", "changed": true, "checksum": "de708cd44f5af25d196072c97ec13eec153a0d16", "dest": "/tmp/license.txt", "gid": 1000, "group": "ubuntu", "md5sum": "a4815336037980f5fbec909697fc08b7", "mode": "0444", "owner": "ubuntu", "size": 88, "src": "/home/ubuntu/.ansible/tmp/ansible-tmp-1519584159.82-262649573960469/source", "state": "file", "uid": 1000}
-changed: [delta] => {"backup_file": "/tmp/license.txt.1508.2018-02-25@18:42:40~", "changed": true, "checksum": "b911df43d3c7a2df582b477ecabbb7ec4a97d0c9", "dest": "/tmp/license.txt", "gid": 1000, "group": "ec2-user", "md5sum": "249b1037ba0f1518e942f7592a4594a8", "mode": "0444", "owner": "ec2-user", "size": 88, "src": "/home/ec2-user/.ansible/tmp/ansible-tmp-1519584159.79-201772096570426/source", "state": "file", "uid": 1000}
-changed: [charlie] => {"backup_file": "/tmp/license.txt.15201.2018-02-25@18:42:40~", "changed": true, "checksum": "993aa210f9e063abac65acc945e278a1c661c422", "dest": "/tmp/license.txt", "gid": 1000, "group": "ec2-user", "md5sum": "3a7ab1be142ee0127cb633aeb7668c21", "mode": "0444", "owner": "ec2-user", "size": 88, "src": "/home/ec2-user/.ansible/tmp/ansible-tmp-1519584159.77-185020957104058/source", "state": "file", "uid": 1000}
+changed: [alpha] => {"backup_file": "/tmp/license.txt.21174.2018-03-03@15:35:23~", "changed": true, "checksum": "b2269a33ffed578328a85e7b44d436ca70bf30fb", "dest": "/tmp/license.txt", "gid": 1000, "group": "ubuntu", "md5sum": "1da3f8da8bad59130e0bcfd7718cc5e9", "mode": "0444", "owner": "ubuntu", "size": 87, "src": "/home/ubuntu/.ansible/tmp/ansible-tmp-1520091323.14-1671228904196/source", "state": "file", "uid": 1000}
+changed: [echo] => {"backup_file": "/tmp/license.txt.18101.2018-03-03@15:35:23~", "changed": true, "checksum": "46da8ab6515091f824ea72b6b17568d659f62c62", "dest": "/tmp/license.txt", "gid": 1000, "group": "ubuntu", "md5sum": "b026a868c1b1939ead32d9a1eabd8073", "mode": "0444", "owner": "ubuntu", "size": 87, "src": "/home/ubuntu/.ansible/tmp/ansible-tmp-1520091323.26-105982912645919/source", "state": "file", "uid": 1000}
+changed: [bravo] => {"backup_file": "/tmp/license.txt.20318.2018-03-03@15:35:23~", "changed": true, "checksum": "09f42937f35d08e09cb878e96811cf8f437fef4e", "dest": "/tmp/license.txt", "gid": 1000, "group": "ubuntu", "md5sum": "aee95065c6bd0a149a361687d815d60e", "mode": "0444", "owner": "ubuntu", "size": 87, "src": "/home/ubuntu/.ansible/tmp/ansible-tmp-1520091323.16-3147457705094/source", "state": "file", "uid": 1000}
+changed: [delta] => {"backup_file": "/tmp/license.txt.7139.2018-03-03@15:35:23~", "changed": true, "checksum": "7439b62d4bacb203c0fb7c49adbd34206492b3ce", "dest": "/tmp/license.txt", "gid": 1000, "group": "ec2-user", "md5sum": "de184ae647bff2580ba9ca8bc09db0f2", "mode": "0444", "owner": "ec2-user", "size": 87, "src": "/home/ec2-user/.ansible/tmp/ansible-tmp-1520091323.24-144921837724225/source", "state": "file", "uid": 1000}
+changed: [charlie] => {"backup_file": "/tmp/license.txt.19842.2018-03-03@15:35:23~", "changed": true, "checksum": "fa6fe1222642d83f68b1c8005bf1d16b3727fdb4", "dest": "/tmp/license.txt", "gid": 1000, "group": "ec2-user", "md5sum": "a4eea1796570fe2064386722a83661e6", "mode": "0444", "owner": "ec2-user", "size": 87, "src": "/home/ec2-user/.ansible/tmp/ansible-tmp-1520091323.2-188953318159005/source", "state": "file", "uid": 1000}
 
-TASK [Verify result] ***********************************************************************************************************************
-changed: [alpha] => {"changed": true, "cmd": "cat /tmp/license.txt", "delta": "0:00:00.001988", "end": "2018-02-25 18:42:40.854365", "rc": 0, "start": "2018-02-25 18:42:40.852377", "stderr": "", "stderr_lines": [], "stdout": "Host ip-172-31-35-226 was licensed to use the software on Sun Feb 25 18:42:39 UTC 2018.", "stdout_lines": ["Host ip-172-31-35-226 was licensed to use the software on Sun Feb 25 18:42:39 UTC 2018."]}
-changed: [bravo] => {"changed": true, "cmd": "cat /tmp/license.txt", "delta": "0:00:00.001933", "end": "2018-02-25 18:42:40.860241", "rc": 0, "start": "2018-02-25 18:42:40.858308", "stderr": "", "stderr_lines": [], "stdout": "Host ip-172-31-43-113 was licensed to use the software on Sun Feb 25 18:42:39 UTC 2018.", "stdout_lines": ["Host ip-172-31-43-113 was licensed to use the software on Sun Feb 25 18:42:39 UTC 2018."]}
-changed: [echo] => {"changed": true, "cmd": "cat /tmp/license.txt", "delta": "0:00:00.001979", "end": "2018-02-25 18:42:40.920421", "rc": 0, "start": "2018-02-25 18:42:40.918442", "stderr": "", "stderr_lines": [], "stdout": "Host ip-172-31-43-102 was licensed to use the software on Sun Feb 25 18:42:39 UTC 2018.", "stdout_lines": ["Host ip-172-31-43-102 was licensed to use the software on Sun Feb 25 18:42:39 UTC 2018."]}
-changed: [charlie] => {"changed": true, "cmd": "cat /tmp/license.txt", "delta": "0:00:00.002611", "end": "2018-02-25 18:42:40.940977", "rc": 0, "start": "2018-02-25 18:42:40.938366", "stderr": "", "stderr_lines": [], "stdout": "Host ip-172-31-36-232 was licensed to use the software on Sun Feb 25 18:42:39 UTC 2018.", "stdout_lines": ["Host ip-172-31-36-232 was licensed to use the software on Sun Feb 25 18:42:39 UTC 2018."]}
-changed: [delta] => {"changed": true, "cmd": "cat /tmp/license.txt", "delta": "0:00:00.002594", "end": "2018-02-25 18:42:40.959573", "rc": 0, "start": "2018-02-25 18:42:40.956979", "stderr": "", "stderr_lines": [], "stdout": "Host ip-172-31-36-222 was licensed to use the software on Sun Feb 25 18:42:39 UTC 2018.", "stdout_lines": ["Host ip-172-31-36-222 was licensed to use the software on Sun Feb 25 18:42:39 UTC 2018."]}
+TASK [Verify content] **********************************************************************************************************************
+changed: [alpha] => {"changed": true, "cmd": "cat /tmp/license.txt", "delta": "0:00:00.001753", "end": "2018-03-03 15:35:24.290424", "rc": 0, "start": "2018-03-03 15:35:24.288671", "stderr": "", "stderr_lines": [], "stdout": "Host ip-172-31-35-226 was licensed to use the software on Sat Mar  3 15:35:22 UTC 2018", "stdout_lines": ["Host ip-172-31-35-226 was licensed to use the software on Sat Mar  3 15:35:22 UTC 2018"]}
+changed: [bravo] => {"changed": true, "cmd": "cat /tmp/license.txt", "delta": "0:00:00.001869", "end": "2018-03-03 15:35:24.328733", "rc": 0, "start": "2018-03-03 15:35:24.326864", "stderr": "", "stderr_lines": [], "stdout": "Host ip-172-31-43-113 was licensed to use the software on Sat Mar  3 15:35:22 UTC 2018", "stdout_lines": ["Host ip-172-31-43-113 was licensed to use the software on Sat Mar  3 15:35:22 UTC 2018"]}
+changed: [echo] => {"changed": true, "cmd": "cat /tmp/license.txt", "delta": "0:00:00.001987", "end": "2018-03-03 15:35:24.385034", "rc": 0, "start": "2018-03-03 15:35:24.383047", "stderr": "", "stderr_lines": [], "stdout": "Host ip-172-31-43-102 was licensed to use the software on Sat Mar  3 15:35:22 UTC 2018", "stdout_lines": ["Host ip-172-31-43-102 was licensed to use the software on Sat Mar  3 15:35:22 UTC 2018"]}
+changed: [charlie] => {"changed": true, "cmd": "cat /tmp/license.txt", "delta": "0:00:00.002733", "end": "2018-03-03 15:35:24.392693", "rc": 0, "start": "2018-03-03 15:35:24.389960", "stderr": "", "stderr_lines": [], "stdout": "Host ip-172-31-36-232 was licensed to use the software on Sat Mar  3 15:35:23 UTC 2018", "stdout_lines": ["Host ip-172-31-36-232 was licensed to use the software on Sat Mar  3 15:35:23 UTC 2018"]}
+changed: [delta] => {"changed": true, "cmd": "cat /tmp/license.txt", "delta": "0:00:00.002697", "end": "2018-03-03 15:35:24.408670", "rc": 0, "start": "2018-03-03 15:35:24.405973", "stderr": "", "stderr_lines": [], "stdout": "Host ip-172-31-36-222 was licensed to use the software on Sat Mar  3 15:35:23 UTC 2018", "stdout_lines": ["Host ip-172-31-36-222 was licensed to use the software on Sat Mar  3 15:35:23 UTC 2018"]}
 
-TASK [Print results] ***********************************************************************************************************************
+TASK [Verify permissions] ******************************************************************************************************************
+changed: [alpha] => {"changed": true, "cmd": "ls -lh /tmp/license.txt", "delta": "0:00:00.002470", "end": "2018-03-03 15:35:24.733513", "rc": 0, "start": "2018-03-03 15:35:24.731043", "stderr": "", "stderr_lines": [], "stdout": "-r--r--r-- 1 ubuntu ubuntu 87 Mar  3 15:35 /tmp/license.txt", "stdout_lines": ["-r--r--r-- 1 ubuntu ubuntu 87 Mar  3 15:35 /tmp/license.txt"]}
+changed: [bravo] => {"changed": true, "cmd": "ls -lh /tmp/license.txt", "delta": "0:00:00.002610", "end": "2018-03-03 15:35:24.770885", "rc": 0, "start": "2018-03-03 15:35:24.768275", "stderr": "", "stderr_lines": [], "stdout": "-r--r--r-- 1 ubuntu ubuntu 87 Mar  3 15:35 /tmp/license.txt", "stdout_lines": ["-r--r--r-- 1 ubuntu ubuntu 87 Mar  3 15:35 /tmp/license.txt"]}
+changed: [echo] => {"changed": true, "cmd": "ls -lh /tmp/license.txt", "delta": "0:00:00.002646", "end": "2018-03-03 15:35:24.833788", "rc": 0, "start": "2018-03-03 15:35:24.831142", "stderr": "", "stderr_lines": [], "stdout": "-r--r--r-- 1 ubuntu ubuntu 87 Mar  3 15:35 /tmp/license.txt", "stdout_lines": ["-r--r--r-- 1 ubuntu ubuntu 87 Mar  3 15:35 /tmp/license.txt"]}
+changed: [charlie] => {"changed": true, "cmd": "ls -lh /tmp/license.txt", "delta": "0:00:00.003232", "end": "2018-03-03 15:35:24.835270", "rc": 0, "start": "2018-03-03 15:35:24.832038", "stderr": "", "stderr_lines": [], "stdout": "-r--r--r-- 1 ec2-user ec2-user 87 Mar  3 15:35 /tmp/license.txt", "stdout_lines": ["-r--r--r-- 1 ec2-user ec2-user 87 Mar  3 15:35 /tmp/license.txt"]}
+changed: [delta] => {"changed": true, "cmd": "ls -lh /tmp/license.txt", "delta": "0:00:00.003034", "end": "2018-03-03 15:35:24.855392", "rc": 0, "start": "2018-03-03 15:35:24.852358", "stderr": "", "stderr_lines": [], "stdout": "-r--r--r-- 1 ec2-user ec2-user 87 Mar  3 15:35 /tmp/license.txt", "stdout_lines": ["-r--r--r-- 1 ec2-user ec2-user 87 Mar  3 15:35 /tmp/license.txt"]}
+
+TASK [Print content] ***********************************************************************************************************************
 ok: [alpha] => {
-    "msg": "Host ip-172-31-35-226 was licensed to use the software on Sun Feb 25 18:42:39 UTC 2018."
+    "msg": "Host ip-172-31-35-226 was licensed to use the software on Sat Mar  3 15:35:22 UTC 2018"
 }
 ok: [bravo] => {
-    "msg": "Host ip-172-31-43-113 was licensed to use the software on Sun Feb 25 18:42:39 UTC 2018."
+    "msg": "Host ip-172-31-43-113 was licensed to use the software on Sat Mar  3 15:35:22 UTC 2018"
 }
 ok: [charlie] => {
-    "msg": "Host ip-172-31-36-232 was licensed to use the software on Sun Feb 25 18:42:39 UTC 2018."
+    "msg": "Host ip-172-31-36-232 was licensed to use the software on Sat Mar  3 15:35:23 UTC 2018"
 }
 ok: [delta] => {
-    "msg": "Host ip-172-31-36-222 was licensed to use the software on Sun Feb 25 18:42:39 UTC 2018."
+    "msg": "Host ip-172-31-36-222 was licensed to use the software on Sat Mar  3 15:35:23 UTC 2018"
 }
 ok: [echo] => {
-    "msg": "Host ip-172-31-43-102 was licensed to use the software on Sun Feb 25 18:42:39 UTC 2018."
+    "msg": "Host ip-172-31-43-102 was licensed to use the software on Sat Mar  3 15:35:22 UTC 2018"
+}
+
+TASK [Print permissions] *******************************************************************************************************************
+ok: [alpha] => {
+    "msg": "-r--r--r-- 1 ubuntu ubuntu 87 Mar  3 15:35 /tmp/license.txt"
+}
+ok: [bravo] => {
+    "msg": "-r--r--r-- 1 ubuntu ubuntu 87 Mar  3 15:35 /tmp/license.txt"
+}
+ok: [charlie] => {
+    "msg": "-r--r--r-- 1 ec2-user ec2-user 87 Mar  3 15:35 /tmp/license.txt"
+}
+ok: [delta] => {
+    "msg": "-r--r--r-- 1 ec2-user ec2-user 87 Mar  3 15:35 /tmp/license.txt"
+}
+ok: [echo] => {
+    "msg": "-r--r--r-- 1 ubuntu ubuntu 87 Mar  3 15:35 /tmp/license.txt"
 }
 
 PLAY RECAP *********************************************************************************************************************************
-alpha                      : ok=5    changed=3    unreachable=0    failed=0
-bravo                      : ok=5    changed=3    unreachable=0    failed=0
-charlie                    : ok=5    changed=3    unreachable=0    failed=0
-delta                      : ok=5    changed=3    unreachable=0    failed=0
-echo                       : ok=5    changed=3    unreachable=0    failed=0
+alpha                      : ok=7    changed=4    unreachable=0    failed=0
+bravo                      : ok=7    changed=4    unreachable=0    failed=0
+charlie                    : ok=7    changed=4    unreachable=0    failed=0
+delta                      : ok=7    changed=4    unreachable=0    failed=0
+echo                       : ok=7    changed=4    unreachable=0    failed=0
 ----
 
 == Lab 00: User management
@@ -1711,10 +1735,8 @@ echo                       : ok=5    changed=3    unreachable=0    failed=0
 == Lab 00: Using Custom Fact Files
 == Lab 00: Dump Variable Values
 == Lab 00: Register Variable From Module Output (use debug to printout returned keys)
-== Lab 00: Create Dynamic Group Based On Distribution
 == Lab 00: Create Dynamic Inventory After EC2 Instance Creation
 == Lab 00: Copying Files via Playbook
-== Lab 00: Copying Templated Files
 == Lab 00: Conditionally Copying Files Based On Distribution
 
 
