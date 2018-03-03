@@ -1592,7 +1592,7 @@ echo                       : ok=5    changed=3    unreachable=0    failed=0
 
 == Lab 29: Templating Files
 . copy `lab-28.yml` to `lab-29.yml`
-. create a playbook that copies `license.txt` in the `/tmp` folder of all hosts
+. create a playbook that copies `license.txt` into the `/tmp` folder of all hosts
 . the license file should read `host <hostname> was licensed to use the software on <today's date>`
 . make the file permissions to read-only for everyone
 . make the file owned by the Ansible user and group
@@ -1687,15 +1687,15 @@ echo                       : ok=7    changed=4    unreachable=0    failed=0
 
 == Lab 30: Default Template Values
 . copy `lab-29.yml` to `lab-30.yml`
-. create a playbook that copies `defaulted.txt` in the `/tmp` folder of all hosts
-. the license file should read `The specified color is <some color>.`
+. create a playbook that copies `defaulted.txt` into the `/tmp` folder of all hosts
+. the file should read `The specified color is <some color>.`
 . craft the template file so that the `color` variable is used to specify the color
 . ensure that the template will use a default value of `white` if the `color` variable is not specified
 . make the file permissions to read-only for everyone
 . make the file owned by the Ansible user and group
 . verify that the license file has been copied correctly to all machines
 . run the playbook **without specifying the color**, the color used should be white
-. run the playbook *specifying the color, the color used should be the value specified on the command-line
+. run the playbook specifying the color, the color used should be the value specified on the command-line
 
 WARNING: the technique used in this lab is **not** in the videos.
 
